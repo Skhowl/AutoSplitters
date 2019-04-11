@@ -17,11 +17,13 @@ startup
     // Settings
     settings.Add("fanfare", true, "Fanfare");
     settings.SetToolTip("fanfare", "Split when you pickup the vase.");
-    settings.Add("stage0", true, "Stage 1: Glut the Shark", "fanfare");
-    settings.Add("stage1", true, "Stage 2: Flotsam and Jetsam", "fanfare");
-    settings.Add("stage2", true, "Stage 3: Wilford Brimley", "fanfare");
-    settings.Add("stage3", true, "Stage 4: Tangchaikovsky", "fanfare");
-    settings.Add("stage4", true, "Stage 5: Ursula", "fanfare");
+    settings.CurrentDefaultParent = "fanfare";
+    settings.Add("stage0", true, "Stage 1: Glut the Shark");
+    settings.Add("stage1", true, "Stage 2: Flotsam and Jetsam");
+    settings.Add("stage2", true, "Stage 3: Wilford Brimley");
+    settings.Add("stage3", true, "Stage 4: Tangchaikovsky");
+    settings.Add("stage4", true, "Stage 5: Ursula");
+    settings.CurrentDefaultParent = null;
     settings.Add("final", true, "Last Hit on Ursula's Final From");
 
     vars.TryFindOffsets = (Func<Process, int, long, bool>)((proc, memorySize, baseAddress) => 
