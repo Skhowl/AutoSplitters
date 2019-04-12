@@ -9,7 +9,7 @@ This is a [LiveSplit](http://livesplit.github.io) [ASL](https://github.com/LiveS
 - Automatically reset the timer when you soft reset the emulator
 - Automatically split for certain events (chosen in the settings)
 
-Here you can enable/disable the options for auto start, auto reset, and auto splitting. If auto splitting is enabled, then you can select the events for which you want the autosplitter to split below under "Advanced".
+You can enable/disable the options for auto start, auto reset, and auto splitting. If auto splitting is enabled, then you can select the events for which you want the autosplitter to split below under "Advanced".
 
 ## Contact
 If you encounter any issues or have any feature requests, please let me know! :)
