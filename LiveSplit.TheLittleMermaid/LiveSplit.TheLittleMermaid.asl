@@ -29,7 +29,7 @@ startup
 	
 	vars.TryFindOffsets = (Func<Process, int, long, bool>)((proc, memorySize, baseAddress) => 
 	{
-		// vars.DebugMessage("memorySize: " + memorySize);
+		vars.DebugMessage(proc.ProcessName + " memorySize: " + memorySize);
 		
 		var oldStates = new Dictionary<int, int>
 		{
