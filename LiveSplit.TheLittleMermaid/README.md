@@ -2,7 +2,8 @@
 This is a [LiveSplit](http://livesplit.github.io) [ASL](https://github.com/LiveSplit/LiveSplit/blob/master/Documentation/Auto-Splitters.md) script for **[Disney's The Little Mermaid](https://en.wikipedia.org/wiki/The_Little_Mermaid_(video_game))** and **Little Mermaid - Ningyo Hime** on emulator.
 
 ### Supported emulators:
-- BizHawk 2.3+ (w/ QuickNes & NesHawk core)
+- BizHawk 2.3.1
+- higan v106
 
 ## Features
 - Automatically start the timer when you press start on title screen
