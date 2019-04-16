@@ -4,6 +4,7 @@ This is a [LiveSplit](http://livesplit.github.io) [ASL](https://github.com/LiveS
 ### Supported emulators:
 - BizHawk 2.3.1
 - higan v106
+- FCEUX 2.2.3
 
 ## Features
 - Automatically start the timer when you press start on title screen
@@ -17,4 +18,4 @@ If you encounter any issues or have any feature requests, please let me know! :)
 - Twitch: https://www.twitch.tv/skhowl
 - GitHub: https://github.com/Skhowl/AutoSplitters
 - Discord: https://www.discord.gg/3D4ckwX
-- Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ
+- Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ

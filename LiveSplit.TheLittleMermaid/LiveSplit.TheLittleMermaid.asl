@@ -1,5 +1,14 @@
+/*
+	This is a LiveSplit ASL script for Disney's The Little Mermaid and Little Mermaid - Ningyo Hime on emulator.
+	
+	- Twitch: https://www.twitch.tv/skhowl
+	- GitHub: https://github.com/Skhowl/AutoSplitters
+	- Discord: https://www.discord.gg/3D4ckwX
+	- Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ
+*/
 state("emuhawk") {}
 state("higan") {}
+state("fceux") {}
 
 startup
 {
@@ -37,6 +46,7 @@ startup
 			{ 13062144, 0 }, //higan v103
 			{ 15859712, 0 }, //higan v104
 			{ 16756736, 0 }, //higan v105tr1
+			{ 4579328, 0 }, //FCEUX 2.2.2
 			{ 6578176, 0 }, //BizHawk 2.2
 			{ 6586368, 0 }, //BizHawk 2.2.1
 			{ 6627328, 0 }, //BizHawk 2.2.2
@@ -46,6 +56,7 @@ startup
 		var curStates = new Dictionary<int, int>
 		{
 			{ 15360000, 0x853F78 }, //higan v106
+			{ 4747264, 0 }, //FCEUX 2.2.3
 			{ 7249920, 0 }, //BizHawk 2.3.1
 		};
 		
@@ -55,9 +66,11 @@ startup
 			long wramOffset = 0;
 			
 			var state = proc.ProcessName.ToLower();
-			if (state == "emuhawk")
+			if (state == "emuhawk" || state == "fceux")
 			{
-				var target = new SigScanTarget(0, "C6 00 00 00 00 00 00 00 00 00 00 00 00 ?? 00 ?? 01 C6 ?? ?? ?? 00 ?? 00");
+				var target = new SigScanTarget(0, "C6000000000000000000000000",
+											"??00??01C6??????00??00??????????",
+											"????????????????????000000000000");
 				
 				var scanOffset = vars.SigScan(proc, target);
 				if (scanOffset != 0)
@@ -67,7 +80,7 @@ startup
 				
 				if (proc.ReadValue<int>((IntPtr)wramOffset) != 0)
 				{
-					vars.DebugMessage("WRAM Pointer: 0x" + wramOffset.ToString("X8"));
+					vars.DebugMessage("RAM Pointer: 0x" + wramOffset.ToString("X8"));
 					vars.watchers = vars.GetWatcherList(wramOffset);
 					return true;
 				}
@@ -99,6 +112,16 @@ startup
 		return result;
 	});
 	
+	vars.Current = (Func<string, int, bool>)((name, value) => 
+	{
+		return vars.watchers[name].Current == value;
+	});
+	
+	vars.Changed = (Func<string, int, bool>)((name, value) => 
+	{
+		return vars.watchers[name].Changed && vars.watchers[name].Current == value;
+	});
+	
 	vars.GetWatcherList = (Func<long, MemoryWatcherList>)((wramOffset) =>
 	{
 		return new MemoryWatcherList
@@ -119,7 +142,7 @@ init
 	if (!vars.TryFindOffsets(game, modules.First().ModuleMemorySize, (long)modules.First().BaseAddress))
 		throw new Exception("[ERROR] Emulated memory not yet initialized.");
 	else
-		refreshRate = 200/3.0;
+		refreshRate = 72.0;
 }
 
 update
@@ -129,23 +152,23 @@ update
 
 start
 {
-	return vars.watchers["GameState"].Old == 0 && vars.watchers["GameState"].Current == 0xFC;
+	return vars.Changed("GameState", 0xFC);
 }
 
 reset
 {
-	return vars.watchers["GameState"].Old == 0xFC && vars.watchers["GameState"].Current == 0;
+	return vars.watchers["GameState"].Changed && vars.watchers["GameState"].Current != 0xFC;
 }
 
 split
 {
-	if (settings["fanfare"] && settings["stage" + vars.watchers["Stage"].Current] && vars.watchers["BossRoom"].Current == 0x08)
+	if (settings["fanfare"] && settings["stage" + vars.watchers["Stage"].Current] && vars.Current("BossRoom", 0x08))
 	{
-		return vars.watchers["GameMode"].Changed && vars.watchers["GameMode"].Current == 0x07;
+		return vars.Changed("GameMode", 0x07);
 	}
-	else if (settings["final"] && vars.watchers["GameMode"].Current == 0x09)
+	else if (settings["final"] && vars.Current("GameMode", 0x09))
 	{
-		return vars.watchers["FinalFormHP"].Current == 0;
+		return vars.Changed("FinalFormHP", 0);
 	}
 	return false;
 }
