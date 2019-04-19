@@ -1,14 +1,48 @@
 /*
-	This is a LiveSplit ASL script for Disney's The Little Mermaid and Little Mermaid - Ningyo Hime on emulator.
+	This is a LiveSplit ASL script for Disney's The Little Mermaid and Little Mermaid - Ningyo Hime on emulators.
 	
 	- Twitch: https://www.twitch.tv/skhowl
 	- GitHub: https://github.com/Skhowl/AutoSplitters
 	- Discord: https://www.discord.gg/3D4ckwX
 	- Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ
+	- Scan Value: 1123217096621663495
 */
-state("emuhawk") {}
-state("higan") {}
-state("fceux") {}
+state("fceux", "2.2.3")
+{
+	byte GameState   : 0x003B1388, 0x01ED;
+	byte GameMode    : 0x003B1388, 0x00D9;
+	byte Stage       : 0x003B1388, 0x00E9;
+	byte FinalFormHP : 0x003B1388, 0x03FC;
+	byte BossRoom    : 0x003B1388, 0x0053;
+}
+
+/*state("retroarch")
+{
+	byte GameState   : 0x004B2850, 0x01ED;
+	byte GameMode    : 0x004B2850, 0x00D9;
+	byte Stage       : 0x004B2850, 0x00E9;
+	byte FinalFormHP : 0x004B2850, 0x03FC;
+	byte BossRoom    : 0x004B2850, 0x0053;
+}*/
+
+state("nestopia", "1.40")
+{
+	// base 0x0000 address of ROM : 0x001B1290, 0xAC, 0x68;
+	byte GameState   : 0x001B1290, 0xAC, 0x0255;
+	byte GameMode    : 0x001B1290, 0xAC, 0x0141;
+	byte Stage       : 0x001B1290, 0xAC, 0x0151;
+	byte FinalFormHP : 0x001B1290, 0xAC, 0x0464;
+	byte BossRoom    : 0x001B1290, 0xAC, 0x00BB;
+}
+
+state("higan", "v106")
+{
+	byte GameState   : 0x00853F78, 0x01ED;
+	byte GameMode    : 0x00853F78, 0x00D9;
+	byte Stage       : 0x00853F78, 0x00E9;
+	byte FinalFormHP : 0x00853F78, 0x03FC;
+	byte BossRoom    : 0x00853F78, 0x0053;
+}
 
 startup
 {
@@ -35,140 +69,54 @@ startup
 	settings.Add("stage4", true, "Stage 5: Ursula");
 	settings.CurrentDefaultParent = null;
 	settings.Add("final", true, "Last Hit on Ursula's Final From");
-	
-	vars.TryFindOffsets = (Func<Process, int, long, bool>)((proc, memorySize, baseAddress) => 
-	{
-		vars.DebugMessage(proc.ProcessName + " memorySize: " + memorySize);
-		
-		var oldStates = new Dictionary<int, int>
-		{
-			{ 12509184, 0 }, //higan v102
-			{ 13062144, 0 }, //higan v103
-			{ 15859712, 0 }, //higan v104
-			{ 16756736, 0 }, //higan v105tr1
-			{ 4579328, 0 }, //FCEUX 2.2.2
-			{ 6578176, 0 }, //BizHawk 2.2
-			{ 6586368, 0 }, //BizHawk 2.2.1
-			{ 6627328, 0 }, //BizHawk 2.2.2
-			{ 7061504, 0 }, //BizHawk 2.3
-		};
-		
-		var curStates = new Dictionary<int, int>
-		{
-			{ 15360000, 0x853F78 }, //higan v106
-			{ 4747264, 0 }, //FCEUX 2.2.3
-			{ 7249920, 0 }, //BizHawk 2.3.1
-		};
-		
-		int ptrOffset;
-		if (curStates.TryGetValue(memorySize, out ptrOffset))
-		{
-			long wramOffset = 0;
-			
-			var state = proc.ProcessName.ToLower();
-			if (state == "emuhawk" || state == "fceux")
-			{
-				var target = new SigScanTarget(0, "C6000000000000000000000000",
-											"??00??01C6??????00??00??????????",
-											"????????????????????000000000000");
-				
-				var scanOffset = vars.SigScan(proc, target);
-				if (scanOffset != 0)
-				{
-					wramOffset = scanOffset - 0x83;
-				}
-				
-				if (proc.ReadValue<int>((IntPtr)wramOffset) != 0)
-				{
-					vars.DebugMessage("RAM Pointer: 0x" + wramOffset.ToString("X8"));
-					vars.watchers = vars.GetWatcherList(wramOffset);
-					return true;
-				}
-			}
-			else if (state == "higan")
-			{
-				vars.watchers = vars.GetWatcherList(ptrOffset);
-				return true;
-			}
-		}
-		else if (oldStates.ContainsKey(memorySize))
-		{
-			MessageBox.Show("The autosplitter detects an outdated emulator.\nPlease update your emulator to the newest version.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-		}
-		return false;
-	});
-	
-	vars.SigScan = (Func<Process, SigScanTarget, long>)((proc, target) =>
-	{
-		vars.DebugMessage("Scanning memory");
-		
-		long result = 0;
-		foreach (var page in proc.MemoryPages())
-		{
-			var scanner = new SignatureScanner(proc, page.BaseAddress, (int)page.RegionSize);
-			if ((result = (long)scanner.Scan(target)) != 0)
-				break;
-		}
-		return result;
-	});
-	
-	vars.Current = (Func<string, int, bool>)((name, value) => 
-	{
-		return vars.watchers[name].Current == value;
-	});
-	
-	vars.Changed = (Func<string, int, bool>)((name, value) => 
-	{
-		return vars.watchers[name].Changed && vars.watchers[name].Current == value;
-	});
-	
-	vars.GetWatcherList = (Func<long, MemoryWatcherList>)((wramOffset) =>
-	{
-		return new MemoryWatcherList
-		{
-			new MemoryWatcher<byte>((IntPtr)wramOffset + 0x01ED) { Name = "GameState" },
-			new MemoryWatcher<byte>((IntPtr)wramOffset + 0x00D9) { Name = "GameMode" },
-			new MemoryWatcher<byte>((IntPtr)wramOffset + 0x00E9) { Name = "Stage" },
-			new MemoryWatcher<byte>((IntPtr)wramOffset + 0x03FC) { Name = "FinalFormHP" },
-			new MemoryWatcher<byte>((IntPtr)wramOffset + 0x0053) { Name = "BossRoom" },
-		};
-	});
 }
 
 init
 {
-	vars.watchers = new MemoryWatcherList();
-	
-	if (!vars.TryFindOffsets(game, modules.First().ModuleMemorySize, (long)modules.First().BaseAddress))
-		throw new Exception("[ERROR] Emulated memory not yet initialized.");
-	else
-		refreshRate = 72.0;
+	refreshRate = 72.0;
 }
 
-update
-{
-	vars.watchers.UpdateAll(game);
-}
+// update
+// {
+// }
 
 start
 {
-	return vars.Changed("GameState", 0xFC);
+	if (old.GameState != current.GameState && current.GameState == 0xFC)
+	{
+		vars.DebugMessage("*Timer* Start");
+		return true;
+	}
+	return false;
 }
 
 reset
 {
-	return vars.watchers["GameState"].Changed && vars.watchers["GameState"].Current != 0xFC;
+	if (old.GameState != current.GameState && current.GameState != 0xFC)
+	{
+		vars.DebugMessage("*Timer* Reset");
+		return true;
+	}
+	return false;
 }
 
 split
 {
-	if (settings["fanfare"] && settings["stage" + vars.watchers["Stage"].Current] && vars.Current("BossRoom", 0x08))
+	if (settings["fanfare"] && current.Stage <= 4 && settings["stage" + current.Stage] && current.BossRoom == 8)
 	{
-		return vars.Changed("GameMode", 0x07);
+		if (old.GameMode != current.GameMode && current.GameMode == 7)
+		{
+			vars.DebugMessage("*Split* Stage: " + current.Stage + " (Fanfare)");
+			return true;
+		}
 	}
-	else if (settings["final"] && vars.Current("GameMode", 0x09))
+	else if (settings["final"] && current.GameMode == 9)
 	{
-		return vars.Changed("FinalFormHP", 0);
+		if (old.FinalFormHP != current.FinalFormHP && current.FinalFormHP == 0)
+		{
+			vars.DebugMessage("*Split* Last Hit on Ursula's Final From");
+			return true;
+		}
 	}
 	return false;
 }

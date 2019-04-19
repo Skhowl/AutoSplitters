@@ -3,8 +3,9 @@ This is a [LiveSplit](http://livesplit.github.io) [ASL](https://github.com/LiveS
 
 ### Supported emulators:
 - BizHawk 2.3.1
-- higan v106
 - FCEUX 2.2.3
+- nestopia 1.40
+- higan v106
 
 ## Features
 - Automatically start the timer when you press start on title screen
