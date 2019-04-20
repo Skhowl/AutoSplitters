@@ -5,8 +5,8 @@
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
     - Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ
-    - Scan Value: 1123217096621663495
 */
+
 state("emuhawk") {}
 
 startup
@@ -35,22 +35,29 @@ startup
     settings.CurrentDefaultParent = null;
     settings.Add("final", true, "Last Hit on Ursula's Final From");
     
-    vars.TryFindOffsets = (Func<Process, int, long, bool>)((proc, memorySize, baseAddress) => 
+    vars.TryFindOffsets = (Func<Process, int, bool>)((proc, memorySize) => 
     {
         vars.DebugMessage(proc.ProcessName + " memorySize: " + memorySize);
         
-        if (memorySize == 7249920) // BizHawk 2.3.1
+        var BizHawk = new Dictionary<int, long>
         {
-            long wramOffset = 0;
-            /* RAM Watch
-                 00112233445566778899AABBCCDDEEFF
-            0x80 ......C6000000000000000000000000
-            0x90 ??00??01C6??????00??00??????????
-            0xA0 ????????????????????000000000000
-            */
-            var target = new SigScanTarget(0,    "C6 00 00 00 00 00 00 00 00 00 00 00 00",
-                                        "?? 00 ?? 01 C6 ?? ?? ?? 00 ?? 00 ?? ?? ?? ?? ??",
-                                        "?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00");
+            { 6578176, 0 }, //BizHawk 2.2
+            { 6586368, 0 }, //BizHawk 2.2.1
+            { 6627328, 0 }, //BizHawk 2.2.2
+            { 7061504, 0 }, //BizHawk 2.3
+            { 7249920, 0 }, //BizHawk 2.3.1
+        };
+        
+        long wramOffset = 0;
+        if (BizHawk.TryGetValue(memorySize, out wramOffset))
+        {
+            var target = new SigScanTarget(0,
+            "C6 00 00 00 00 00 00 00 00 00 00 00 00 ?? 00 ??",
+            "01 C6 ?? ?? ?? 00 ?? 00 ?? ?? ?? ?? ?? ?? ?? ??",
+            "?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 ?? ?? 00",
+            "00 ?? 00 00 00 ?? 00 ?? ?? ?? 00 ?? ?? ?? ?? ??",
+            "?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 ?? ?? ?? ?? 00"
+            );
             
             var scanOffset = vars.SigScan(proc, target);
             if (scanOffset != 0)
@@ -67,7 +74,7 @@ startup
         }
         else
         {
-            MessageBox.Show("The autosplitter detects an unsupported emulator.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Autosplitter detects an unsupported emulator.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return false;
     });
@@ -107,13 +114,23 @@ startup
             new MemoryWatcher<byte>((IntPtr)wramOffset + 0x0053) { Name = "BossRoom" },
         };
     });
+    
+    vars.Stage = 0;
+    vars.BossNames = new string[]
+    {
+        "Glut the Shark",
+        "Flotsam and Jetsam",
+        "Wilford Brimley",
+        "Tangchaikovsky",
+        "Ursula"
+    };
 }
 
 init
 {
     vars.watchers = new MemoryWatcherList();
     
-    if (!vars.TryFindOffsets(game, modules.First().ModuleMemorySize, (long)modules.First().BaseAddress))
+    if (!vars.TryFindOffsets(game, modules.First().ModuleMemorySize))
         throw new Exception("[ERROR] Emulated memory not yet initialized.");
     else
         refreshRate = 72.0;
@@ -122,6 +139,7 @@ init
 update
 {
     vars.watchers.UpdateAll(game);
+    vars.Stage = vars.watchers["Stage"].Current;
 }
 
 start
@@ -146,11 +164,11 @@ reset
 
 split
 {
-    if (settings["fanfare"] && vars.watchers["Stage"].Current <= 4 && settings["stage" + vars.watchers["Stage"].Current] && vars.Current("BossRoom", 8))
+    if (settings["fanfare"] && vars.Stage <= 4 && settings["stage" + vars.Stage] && vars.Current("BossRoom", 8))
     {
         if (vars.Changed("GameMode", 7))
         {
-            vars.DebugMessage("*Split* Stage: " + vars.watchers["Stage"].Current + " (Fanfare)");
+            vars.DebugMessage("*Split* Fanfare: " + vars.BossNames[vars.Stage]);
             return true;
         }
     }
