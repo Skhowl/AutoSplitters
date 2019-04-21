@@ -63,6 +63,7 @@ startup
     });
     
     // Settings
+    settings.Add("info", false, "Supported Emulators: FCEUX 2.2.3, Nestopia 1.40, higan v106");
     settings.Add("fanfare", true, "Fanfare");
     settings.SetToolTip("fanfare", "Split when you pickup the vase.");
     settings.CurrentDefaultParent = "fanfare";

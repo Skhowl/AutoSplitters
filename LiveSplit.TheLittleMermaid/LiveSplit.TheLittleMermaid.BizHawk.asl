@@ -24,6 +24,7 @@ startup
     });
     
     // Settings
+    settings.Add("info", false, "Supported Emulators: BizHawk 2.2+");
     settings.Add("fanfare", true, "Fanfare");
     settings.SetToolTip("fanfare", "Split when you pickup the vase.");
     settings.CurrentDefaultParent = "fanfare";
