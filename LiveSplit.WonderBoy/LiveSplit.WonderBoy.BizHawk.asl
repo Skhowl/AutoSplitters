@@ -24,7 +24,8 @@ startup
     });
     
     // Settings
-    settings.Add("info", false, "Supported Emulators: BizHawk 2.2+");
+    settings.Add("support", true, "Supported Emulators:");
+    settings.Add("emu1", true, "BizHawk 2.2+", "support");
     settings.Add("LastHit", true, "Last Hit on Boss");
     settings.SetToolTip("LastHit", "Split on last hit when head is falling off.");
     settings.Add("BossAny", true, "Area 9 (Boss Any%)", "LastHit");
@@ -153,11 +154,11 @@ startup
     {
         return new MemoryWatcherList
         {
-            new MemoryWatcher<byte>(  (IntPtr)wramOffset + 0x000C) { Name = "GameState" },
-            new MemoryWatcher<byte>(  (IntPtr)wramOffset + 0x0115) { Name = "GameMode" },
-            new MemoryWatcher<byte>(  (IntPtr)wramOffset + 0x0128) { Name = "Level" },
-            new MemoryWatcher<ushort>((IntPtr)wramOffset + 0x0129) { Name = "SubLevel" },
-            new MemoryWatcher<byte>(  (IntPtr)wramOffset + 0x01AC) { Name = "BossHP" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0xC) { Name = "GameState" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x115) { Name = "GameMode" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x128) { Name = "Level" },
+            new MemoryWatcher<ushort>((IntPtr)wramOffset + 0x129) { Name = "SubLevel" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x1AC) { Name = "BossHP" },
         };
     });
     

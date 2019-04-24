@@ -11,21 +11,23 @@
 // Kega Fusion v3.64
 state("fusion")
 {
-    byte   GameState : 0x002A52D8, 0x000C;
-    byte   GameMode  : 0x002A52D8, 0x0115;
-    byte   Level     : 0x002A52D8, 0x0128;
-    ushort SubLevel  : 0x002A52D8, 0x0129;
-    byte   BossHP    : 0x002A52D8, 0x01AC;
+    // base 0x0000 address of RAM : 0x2A52D8, 0xC000;
+    byte   GameState : 0x2A52D8, 0xC00C;
+    byte   GameMode  : 0x2A52D8, 0xC115;
+    byte   Level     : 0x2A52D8, 0xC128;
+    ushort SubLevel  : 0x2A52D8, 0xC129;
+    byte   BossHP    : 0x2A52D8, 0xC1AC;
 }
 
 // Gens+ 0.0.9.61
 state("gens+")
 {
-    byte   GameState : 0x00E477C0, 0x000C;
-    byte   GameMode  : 0x00E477C0, 0x0115;
-    byte   Level     : 0x00E477C0, 0x0128;
-    ushort SubLevel  : 0x00E477C0, 0x0129;
-    byte   BossHP    : 0x00E477C0, 0x01AC;
+    // base 0x0000 address of RAM : 0xED1698, 0;
+    byte   GameState : 0xED1698, 0xC;
+    byte   GameMode  : 0xED1698, 0x115;
+    byte   Level     : 0xED1698, 0x128;
+    ushort SubLevel  : 0xED1698, 0x129;
+    byte   BossHP    : 0xED1698, 0x1AC;
 }
 
 startup
@@ -43,7 +45,9 @@ startup
     });
     
     // Settings
-    settings.Add("info", false, "Supported Emulators: Kega Fusion v3.64, Gens+ 0.0.9.61");
+    settings.Add("support", true, "Supported Emulators:");
+    settings.Add("emu1", true, "Kega Fusion v3.64", "support");
+    settings.Add("emu2", true, "Gens+ 0.0.9.61", "support");
     settings.Add("LastHit", true, "Last Hit on Boss");
     settings.SetToolTip("LastHit", "Split on last hit when head is falling off.");
     settings.Add("BossAny", true, "Area 9 (Boss Any%)", "LastHit");

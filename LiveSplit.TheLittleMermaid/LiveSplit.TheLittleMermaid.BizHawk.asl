@@ -24,16 +24,15 @@ startup
     });
     
     // Settings
-    settings.Add("info", false, "Supported Emulators: BizHawk 2.2+");
+    settings.Add("support", true, "Supported Emulators:");
+    settings.Add("emu1", true, "BizHawk 2.2+", "support");
     settings.Add("fanfare", true, "Fanfare");
     settings.SetToolTip("fanfare", "Split when you pickup the vase.");
-    settings.CurrentDefaultParent = "fanfare";
-    settings.Add("stage0", true, "Stage 1: Glut the Shark");
-    settings.Add("stage1", true, "Stage 2: Flotsam and Jetsam");
-    settings.Add("stage2", true, "Stage 3: Wilford Brimley");
-    settings.Add("stage3", true, "Stage 4: Tangchaikovsky");
-    settings.Add("stage4", true, "Stage 5: Ursula");
-    settings.CurrentDefaultParent = null;
+    settings.Add("stage0", true, "Stage 1: Glut the Shark", "fanfare");
+    settings.Add("stage1", true, "Stage 2: Flotsam and Jetsam", "fanfare");
+    settings.Add("stage2", true, "Stage 3: Wilford Brimley", "fanfare");
+    settings.Add("stage3", true, "Stage 4: Tangchaikovsky", "fanfare");
+    settings.Add("stage4", true, "Stage 5: Ursula", "fanfare");
     settings.Add("final", true, "Last Hit on Ursula's Final From");
     
     vars.TryFindOffsets = (Func<Process, int, bool>)((proc, memorySize) => 
@@ -108,11 +107,11 @@ startup
     {
         return new MemoryWatcherList
         {
-            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x01ED) { Name = "GameState" },
-            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x00D9) { Name = "GameMode" },
-            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x00E9) { Name = "Stage" },
-            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x03FC) { Name = "FinalFormHP" },
-            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x0053) { Name = "BossRoom" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x1ED) { Name = "GameState" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0xD9) { Name = "GameMode" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0xE9) { Name = "Stage" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x3FC) { Name = "FinalFormHP" },
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x53) { Name = "BossRoom" },
         };
     });
     

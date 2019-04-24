@@ -5,7 +5,8 @@ This is a [LiveSplit](http://livesplit.github.io) [ASL](https://github.com/LiveS
 - BizHawk 2.2+
 - FCEUX 2.2.3
 - Nestopia 1.40
-- higan v106
+- Higan v106
+- Mesen 0.9.7
 
 ## Features
 - Automatically start the timer when you press start on title screen

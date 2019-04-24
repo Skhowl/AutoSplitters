@@ -11,41 +11,45 @@
 // FCEUX 2.2.3
 state("fceux")
 {
-    byte GameState   : 0x003B1388, 0x01ED;
-    byte GameMode    : 0x003B1388, 0x00D9;
-    byte Stage       : 0x003B1388, 0x00E9;
-    byte FinalFormHP : 0x003B1388, 0x03FC;
-    byte BossRoom    : 0x003B1388, 0x0053;
+    // base 0x0000 address of RAM : 0x3B1388, 0;
+    byte GameState   : 0x3B1388, 0x1ED;
+    byte GameMode    : 0x3B1388, 0xD9;
+    byte Stage       : 0x3B1388, 0xE9;
+    byte FinalFormHP : 0x3B1388, 0x3FC;
+    byte BossRoom    : 0x3B1388, 0x53;
 }
 
-/*state("retroarch")
+// Mesen 0.9.7
+state("mesen")
 {
-    byte GameState   : 0x004B2850, 0x01ED;
-    byte GameMode    : 0x004B2850, 0x00D9;
-    byte Stage       : 0x004B2850, 0x00E9;
-    byte FinalFormHP : 0x004B2850, 0x03FC;
-    byte BossRoom    : 0x004B2850, 0x0053;
-}*/
+    // base 0x0000 address of RAM : 0x4311838, 0x118, 0xB8, 0x90, 0x1D8, 8, 0;
+    byte GameState   : "MesenCore.dll", 0x4311838, 0x118, 0xB8, 0x90, 0x1D8, 8, 0x1ED;
+    byte GameMode    : "MesenCore.dll", 0x4311838, 0x118, 0xB8, 0x90, 0x1D8, 8, 0xD9;
+    byte Stage       : "MesenCore.dll", 0x4311838, 0x118, 0xB8, 0x90, 0x1D8, 8, 0xE9;
+    byte FinalFormHP : "MesenCore.dll", 0x4311838, 0x118, 0xB8, 0x90, 0x1D8, 8, 0x3FC;
+    byte BossRoom    : "MesenCore.dll", 0x4311838, 0x118, 0xB8, 0x90, 0x1D8, 8, 0x53;
+}
 
 // Nestopia 1.40
 state("nestopia")
 {
-    // base 0x0000 address of RAM : 0x001B1290, 0xAC, 0x68;
-    byte GameState   : 0x001B1290, 0xAC, 0x0255;
-    byte GameMode    : 0x001B1290, 0xAC, 0x0141;
-    byte Stage       : 0x001B1290, 0xAC, 0x0151;
-    byte FinalFormHP : 0x001B1290, 0xAC, 0x0464;
-    byte BossRoom    : 0x001B1290, 0xAC, 0x00BB;
+    // base 0x0000 address of RAM : 0x1B2BCC, 0, 8, 0xC, 0xC, 0x68;
+    byte GameState   : 0x1B2BCC, 0, 8, 0xC, 0xC, 0x255;
+    byte GameMode    : 0x1B2BCC, 0, 8, 0xC, 0xC, 0x141;
+    byte Stage       : 0x1B2BCC, 0, 8, 0xC, 0xC, 0x151;
+    byte FinalFormHP : 0x1B2BCC, 0, 8, 0xC, 0xC, 0x464;
+    byte BossRoom    : 0x1B2BCC, 0, 8, 0xC, 0xC, 0xBB;
 }
 
 // higan v106
 state("higan")
 {
-    byte GameState   : 0x00853F78, 0x01ED;
-    byte GameMode    : 0x00853F78, 0x00D9;
-    byte Stage       : 0x00853F78, 0x00E9;
-    byte FinalFormHP : 0x00853F78, 0x03FC;
-    byte BossRoom    : 0x00853F78, 0x0053;
+    // base 0x0000 address of RAM : 0x3F2800, 0x78;
+    byte GameState   : 0x3F2800, 0x265;
+    byte GameMode    : 0x3F2800, 0x151;
+    byte Stage       : 0x3F2800, 0x161;
+    byte FinalFormHP : 0x3F2800, 0x474;
+    byte BossRoom    : 0x3F2800, 0xCB;
 }
 
 startup
@@ -63,16 +67,18 @@ startup
     });
     
     // Settings
-    settings.Add("info", false, "Supported Emulators: FCEUX 2.2.3, Nestopia 1.40, higan v106");
+    settings.Add("support", true, "Supported Emulators:");
+    settings.Add("emu1", true, "FCEUX 2.2.3", "support");
+    settings.Add("emu2", true, "Mesen 0.9.7", "support");
+    settings.Add("emu3", true, "Nestopia 1.40", "support");
+    settings.Add("emu4", true, "Higan v106", "support");
     settings.Add("fanfare", true, "Fanfare");
     settings.SetToolTip("fanfare", "Split when you pickup the vase.");
-    settings.CurrentDefaultParent = "fanfare";
-    settings.Add("stage0", true, "Stage 1: Glut the Shark");
-    settings.Add("stage1", true, "Stage 2: Flotsam and Jetsam");
-    settings.Add("stage2", true, "Stage 3: Wilford Brimley");
-    settings.Add("stage3", true, "Stage 4: Tangchaikovsky");
-    settings.Add("stage4", true, "Stage 5: Ursula");
-    settings.CurrentDefaultParent = null;
+    settings.Add("stage0", true, "Stage 1: Glut the Shark", "fanfare");
+    settings.Add("stage1", true, "Stage 2: Flotsam and Jetsam", "fanfare");
+    settings.Add("stage2", true, "Stage 3: Wilford Brimley", "fanfare");
+    settings.Add("stage3", true, "Stage 4: Tangchaikovsky", "fanfare");
+    settings.Add("stage4", true, "Stage 5: Ursula", "fanfare");
     settings.Add("final", true, "Last Hit on Ursula's Final From");
     
     vars.BossNames = new string[]
