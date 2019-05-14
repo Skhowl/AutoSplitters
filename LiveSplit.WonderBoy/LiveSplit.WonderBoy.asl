@@ -12,6 +12,7 @@
 state("fusion")
 {
     // base 0x0000 address of RAM : 0x2A52D8, 0xC000;
+    byte   BoyState  : 0x2A52D8, 0xC008;
     byte   GameState : 0x2A52D8, 0xC00C;
     byte   GameMode  : 0x2A52D8, 0xC115;
     byte   Level     : 0x2A52D8, 0xC128;
@@ -23,6 +24,7 @@ state("fusion")
 state("gens+")
 {
     // base 0x0000 address of RAM : 0xED1698, 0;
+    byte   BoyState  : 0xED1698, 0x8;
     byte   GameState : 0xED1698, 0xC;
     byte   GameMode  : 0xED1698, 0x115;
     byte   Level     : 0xED1698, 0x128;
@@ -45,14 +47,27 @@ startup
     });
     
     // Settings
-    settings.Add("support", true, "Supported Emulators:");
-    settings.Add("emu1", true, "Kega Fusion v3.64", "support");
-    settings.Add("emu2", true, "Gens+ 0.0.9.61", "support");
-    settings.Add("LastHit", true, "Last Hit on Boss");
-    settings.SetToolTip("LastHit", "Split on last hit when head is falling off.");
-    settings.Add("BossAny", true, "Area 9 (Boss Any%)", "LastHit");
-    settings.Add("Boss100", true, "Area 10 (Boss 100%)", "LastHit");
-    settings.Add("transition", true, "Level Transitions");
+    settings.Add("support", false, "Supported Emulators:");
+    settings.Add("emu1", false, "Kega Fusion v3.64", "support");
+    settings.Add("emu2", false, "Gens+ 0.0.9.61", "support");
+    settings.Add("start", true, "Start timer at:");
+    settings.Add("title", true, "Title screen", "start");
+    settings.Add("boy", false, "Boy is allow to move", "start");
+    settings.Add("lasthit", true, "Split: Last Hit on Boss");
+    settings.SetToolTip("lasthit", "Split on last hit when head is falling off.");
+    settings.CurrentDefaultParent = "lasthit";
+    settings.Add("boss3", false, "Area 1");
+    settings.Add("boss7", false, "Area 2");
+    settings.Add("boss11", false, "Area 3");
+    settings.Add("boss15", false, "Area 4");
+    settings.Add("boss19", false, "Area 5");
+    settings.Add("boss23", false, "Area 6");
+    settings.Add("boss27", false, "Area 7");
+    settings.Add("boss31", false, "Area 8");
+    settings.Add("boss35", true, "Area 9 (Boss Any%)");
+    settings.Add("boss39", true, "Area 10 (Boss 100%)");
+    settings.CurrentDefaultParent = null;
+    settings.Add("transition", true, "Split: Level Transitions");
     settings.SetToolTip("transition", "Split when you entering a new area/round.");
     settings.Add("area1", true, "Area 1", "transition");
     settings.Add("stage1", true, "R1 >> R2", "area1");
@@ -108,15 +123,23 @@ startup
 init
 {
     print(""+game.MainModule.FileVersionInfo);
-    refreshRate = 72.0;
+    refreshRate = 200/3;
 }
 
 start
 {
-    if (old.GameMode != current.GameMode && current.GameMode == 0x03)
+    if (current.GameMode == 0x03)
     {
-        vars.DebugMessage("*Timer* Start");
-        return true;
+        if (settings["title"])
+        {
+            vars.DebugMessage("*Timer* Start (title screen)");
+            return true;
+        }
+        else if (settings["boy"] && old.BoyState == 1 && current.BoyState == 4)
+        {
+            vars.DebugMessage("*Timer* Start (boy move)");
+            return true;
+        }
     }
     return false;
 }
@@ -133,28 +156,31 @@ start
 
 split
 {
-    if (settings["transition"] && current.Level > 0 && current.Level <= 0x27 && settings["stage" + current.Level])
+    if (settings["transition"] && current.Level <= 0x27 && current.Level > old.Level)
     {
-        if (current.Level > old.Level)
+        if (settings["stage" + current.Level])
         {
-            vars.DebugMessage("*Split* Transition: A" + (byte)(1 + old.Level / 4) + " R" + (byte)(1 + old.Level % 4) + " >> A" + (byte)(1 + current.Level / 4) + " R" + (byte)(1 + current.Level % 4));
+            vars.DebugMessage("*Split* Transition: Area " + (byte)(1 + old.Level / 4) + " Round " + (byte)(1 + old.Level % 4) + " >> Area " + (byte)(1 + current.Level / 4) + " Round " + (byte)(1 + current.Level % 4));
             return true;
         }
     }
     
-    if (settings["BossAny"] && current.Level == 0x23 && current.SubLevel == 0xE403)
+    if ((byte)(current.Level % 4) == 3 && settings["boss" + current.Level] && current.SubLevel == 0xE403 && current.GameState > 0)
     {
-        if (current.GameState > 0 && old.BossHP > current.BossHP && current.BossHP == 0)
+        if (old.BossHP > current.BossHP && current.BossHP == 0)
         {
-            vars.DebugMessage("*Split* Final: Boss Any%");
-            return true;
-        }
-    }
-    else if (settings["Boss100"] && current.Level == 0x27 && current.SubLevel == 0xE403)
-    {
-        if (current.GameState > 0 && old.BossHP > current.BossHP && current.BossHP == 0)
-        {
-            vars.DebugMessage("*Split* Final: Boss 100%");
+            if (current.Level == 0x23) // Area 9 Round 4
+            {
+                vars.DebugMessage("*Split* Final: Boss Any%");
+            }
+            else if (current.Level == 0x27) // Area 10 Round 4
+            {
+                vars.DebugMessage("*Split* Final: Boss 100%");
+            }
+            else // everything else: Area ? Round 4
+            {
+                vars.DebugMessage("*Split* Boss killed in Area " + (byte)(1 + current.Level / 4));
+            }
             return true;
         }
     }

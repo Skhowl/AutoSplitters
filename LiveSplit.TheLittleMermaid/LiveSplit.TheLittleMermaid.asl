@@ -72,14 +72,14 @@ startup
     settings.Add("emu2", true, "Mesen 0.9.7", "support");
     settings.Add("emu3", true, "Nestopia 1.40", "support");
     settings.Add("emu4", true, "Higan v106", "support");
-    settings.Add("fanfare", true, "Fanfare");
+    settings.Add("fanfare", true, "Split: Fanfare");
     settings.SetToolTip("fanfare", "Split when you pickup the vase.");
     settings.Add("stage0", true, "Stage 1: Glut the Shark", "fanfare");
     settings.Add("stage1", true, "Stage 2: Flotsam and Jetsam", "fanfare");
     settings.Add("stage2", true, "Stage 3: Wilford Brimley", "fanfare");
     settings.Add("stage3", true, "Stage 4: Tangchaikovsky", "fanfare");
     settings.Add("stage4", true, "Stage 5: Ursula", "fanfare");
-    settings.Add("final", true, "Last Hit on Ursula's Final From");
+    settings.Add("final", true, "Split: Last Hit on Ursula's Final From");
     
     vars.BossNames = new string[]
     {
@@ -94,7 +94,7 @@ startup
 init
 {
     print(""+game.MainModule.FileVersionInfo);
-    refreshRate = 72.0;
+    refreshRate = 200/3;
 }
 
 start
