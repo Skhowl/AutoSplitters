@@ -48,7 +48,7 @@ startup
     settings.CurrentDefaultParent = null;
     settings.Add("remover", true, "Game Time Remover");
     settings.CurrentDefaultParent = "remover";
-    settings.Add("load", true, "Loading (Engine)");
+    settings.Add("load", false, "Loading (Hard Drive)");
     settings.Add("tips", true, "Loading Tips");
     settings.Add("skip", true, "Loading Bink");
     settings.Add("bink", false, "Whole Bink Video");
