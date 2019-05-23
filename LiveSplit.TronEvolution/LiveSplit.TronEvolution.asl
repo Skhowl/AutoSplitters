@@ -1,6 +1,6 @@
 /*
     This is a LiveSplit ASL script for Tron: Evolution on PC.
-    
+
     - Twitch: https://www.twitch.tv/skhowl
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
@@ -11,19 +11,19 @@
 state("gridgame")
 {
     // Static
-    byte iLoading    : 0x1E78EB4;
-    byte iLoadingTip : 0x1EBA634;
-    byte iGameplay   : 0x1D99188;
-    long iLagging    : 0x1E8AA8C;
+    byte iBGS  : 0x1E78EB4;
+    byte iBGLS : 0x1EBA634;
+    byte iGP   : 0x1D99188;
+    long iLAG  : 0x1E8AA8C;
     // Pointer
-    byte iChapterIndex : 0x15A0ABC, 0x114, 0xAFC, 0x4, 0xE0;
-    byte iNotSkippable : 0x1E7E63C, 0xD7;
+    byte iCID : 0x9AD6B8, 0x8CC, 0xAFC, 0x4, 0xE0;
+    byte iNSM : 0x1E7E63C, 0xD7;
 }
 
 startup
 {
     refreshRate = 0.5;
-    
+
     // Debug messages for DebugView (https://docs.microsoft.com/en-us/sysinternals/downloads/debugview)
     vars.doDebug = true;
     vars.DebugMessage = (Action<string>)((message) =>
@@ -33,7 +33,7 @@ startup
             print("[Debug] " + message);
         }
     });
-    
+
     settings.Add("start", false, "Start:");
     settings.Add("after", true, "After intro movie", "start");
     settings.Add("chapter", false, "Split: Chapter finished");
@@ -48,11 +48,11 @@ startup
     settings.CurrentDefaultParent = null;
     settings.Add("remover", true, "Game Time Remover");
     settings.CurrentDefaultParent = "remover";
-    settings.Add("load", false, "Loading (Hard Drive)");
+    settings.Add("load", true, "Loading Screen");
     settings.Add("tips", true, "Loading Tips");
     settings.Add("skip", true, "Loading Bink");
     settings.Add("bink", false, "Whole Bink Video");
-    
+
     vars.ChapterNames = new string[]
     {
         "1: Reboot",
@@ -75,7 +75,7 @@ init
 {
     if (settings["start"])
     {
-        if (settings["after"] && current.iChapterIndex == 1 && current.iLagging == 0 && old.iGameplay == 0 && current.iGameplay == 1)
+        if (settings["after"] && current.iCID == 1 && current.iLAG == 0 && old.iGP == 0 && current.iGP == 1)
         {
             vars.DebugMessage("*Timer* Start");
             return true;
@@ -86,9 +86,9 @@ init
 
 split
 {
-    if (settings["chapter"] && old.iChapterIndex < current.iChapterIndex && settings["chapter" + old.iChapterIndex])
+    if (settings["chapter"] && old.iCID < current.iCID && settings["chapter" + old.iCID])
     {
-        vars.DebugMessage("*Split* Chapter " + vars.ChapterNames[old.iChapterIndex]);
+        vars.DebugMessage("*Split* Chapter " + vars.ChapterNames[old.iCID]);
         return true;
     }
     return false;
@@ -98,19 +98,19 @@ isLoading
 {
     if (settings["remover"])
     {
-        if (settings["load"] && current.iLoading == 17)
+        if (settings["load"] && current.iBGS != 0 && current.iGP == 0)
         {
             return true;
         }
-        if (settings["tips"] && current.iLoadingTip == 1)
+        if (settings["tips"] && current.iBGLS == 1)
         {
             return true;
         }
-        if (settings["skip"] && current.iNotSkippable != 0)
+        if (settings["skip"] && current.iNSM != 0)
         {
             return true;
         }
-        if (settings["bink"] && current.iGameplay == 0)
+        if (settings["bink"] && current.iGP == 0)
         {
             return true;
         }
