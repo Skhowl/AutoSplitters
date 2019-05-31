@@ -11,8 +11,7 @@
 state("gridgame")
 {
     // Static
-    long iLoading   : 0x1E78EAD;
-    byte iPlaying   : 0x1DDD64D;
+    byte iGameState : 0x1DDD64D;
     byte iNoBink    : 0x1D99188;
     byte iBGLevel   : 0x1EBA634;
     short iLastBink : "binkw32.dll", 0x27221;
@@ -35,8 +34,11 @@ startup
         }
     });
 
+    // Start:
     settings.Add("start", true, "Start:");
-    settings.Add("after", true, "After intro movie", "start");
+    settings.Add("after", true, "After Grid Development Diary Entry (Intro)", "start");
+
+    // Split:
     settings.Add("bink_split", false, "Split: Bink video finished/skipped");
     settings.CurrentDefaultParent = "bink_split";
     // Chapter 1:
@@ -84,13 +86,17 @@ startup
     settings.Add("bik_3144", true, "Ch.7: Sc3_02_02a.bik");
     settings.Add("bik_3428", true, "Ch.7: Sc3_02_02b.bik");
     settings.Add("bik_3564", true, "Ch.7: Sc3_03_01.bik");
+
+    // Load remover:
     settings.CurrentDefaultParent = null;
-    settings.Add("remover", true, "Game Time Remover");
+    settings.Add("remover", true, "Load Remover");
     settings.CurrentDefaultParent = "remover";
     settings.Add("load", true, "Loading Screen");
     settings.Add("tips", true, "Loading Tips");
     settings.Add("skip", true, "Loading Bink");
     // settings.Add("bink", false, "Whole Bink Video");
+
+    // Extras
     vars.BinkID = 0;
 }
 
@@ -98,7 +104,7 @@ init
 {
     print(""+game.MainModule.FileVersionInfo);
     print("ModuleMemorySize: "+modules.First().ModuleMemorySize);
-    refreshRate = 400/3;
+    refreshRate = 200/3;
 }
 
 start
@@ -133,7 +139,7 @@ isLoading
 {
     if (settings["remover"])
     {
-        if (settings["load"] && current.iLoading != 0 && current.iNoBink == 0)
+        if (settings["load"] && current.iGameState < 2)
         {
             return true;
         }
@@ -149,7 +155,6 @@ isLoading
         {
             return true;
         }*/
-        return current.iPlaying != 2;
     }
     return false;
 }
