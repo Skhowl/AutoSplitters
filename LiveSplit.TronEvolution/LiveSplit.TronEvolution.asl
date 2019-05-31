@@ -139,7 +139,7 @@ isLoading
 {
     if (settings["remover"])
     {
-        if (settings["load"] && current.iGameState < 2)
+        if (settings["load"] && current.iGameState != 2)
         {
             return true;
         }
