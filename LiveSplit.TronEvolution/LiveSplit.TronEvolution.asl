@@ -43,8 +43,8 @@ startup
     settings.Add("bik_2188", true, "Ch.1: Sc1_01_03.bik");
     settings.Add("bik_2764", true, "Ch.1: Sc1_01_06.bik");
     settings.Add("bik_3020", true, "Ch.1: 101AbraxDiseaseTaunt.bik");
-    settings.Add("bik_3604", true, "Ch.1: 101AbraxasJumpDown.bik");
-    settings.Add("bik_2980", true, "Ch.1: 101AbraxasJumpUp.bik");
+    settings.Add("bik_3604", false, "Ch.1: 101AbraxasJumpDown.bik");
+    settings.Add("bik_2980", false, "Ch.1: 101AbraxasJumpUp.bik");
     settings.Add("bik_2852", true, "Ch.1: 101AbraxInsigTaunt.bik");
     settings.Add("bik_3156", true, "Ch.1: Sc1_01_07.bik");
     settings.Add("bik_3120", true, "Ch.1: Sc1_03_01.bik");
@@ -98,7 +98,7 @@ init
 {
     print(""+game.MainModule.FileVersionInfo);
     print("ModuleMemorySize: "+modules.First().ModuleMemorySize);
-    refreshRate = 200/3;
+    refreshRate = 400/3;
 }
 
 start
