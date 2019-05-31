@@ -11,7 +11,7 @@
 state("gridgame")
 {
     // Static
-    byte iGameState : 0x1DDD64D;
+    long iLoading   : 0x1E78EAD;
     byte iNoBink    : 0x1D99188;
     byte iBGLevel   : 0x1EBA634;
     short iLastBink : "binkw32.dll", 0x27221;
@@ -139,7 +139,7 @@ isLoading
 {
     if (settings["remover"])
     {
-        if (settings["load"] && current.iGameState != 2)
+        if (settings["load"] && current.iLoading != 0 && current.iNoBink == 0)
         {
             return true;
         }
