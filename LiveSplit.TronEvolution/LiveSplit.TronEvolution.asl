@@ -11,7 +11,6 @@
 state("gridgame")
 {
     // Static
-    long iLoading   : 0x1E78EAD;
     byte iNoBink    : 0x1D99188;
     byte iBGLevel   : 0x1EBA634;
     short iLastBink : "binkw32.dll", 0x27221;
@@ -36,7 +35,11 @@ startup
 
     // Start:
     settings.Add("start", true, "Start:");
-    settings.Add("after", true, "After: Grid Development Diary Entry (Intro)", "start");
+    settings.Add("after", true, "After: Grid Development Diary Entry (Intro Cutscene)", "start");
+
+    // Finish:
+    settings.Add("finish", true, "Finish:");
+    settings.Add("begin", true, "Begin: Quorra's Rescue (Final Cutscene)", "finish");
 
     // Split:
     settings.Add("bink_split", false, "Split: Bink movie finished/skipped");
@@ -122,16 +125,14 @@ startup
     settings.SetToolTip("bik_3144", "Tron Evolution\\GridGame\\Movies\\Sc3_02_02a.bik");
     settings.Add("bik_3428", true, "Ch.7: You'll overload the Drive");
     settings.SetToolTip("bik_3428", "Tron Evolution\\GridGame\\Movies\\Sc3_02_02b.bik");
-    // settings.Add("bik_3564", true, "Ch.7: Quorra's Rescue (Final Cutscene)");
-    // settings.SetToolTip("bik_3564", "Tron Evolution\\GridGame\\Movies\\Sc3_03_01.bik");
 
     // Load remover:
     settings.CurrentDefaultParent = null;
     settings.Add("remover", true, "Load Remover");
     settings.CurrentDefaultParent = "remover";
-    settings.Add("load", true, "Loading Screen");
-    settings.Add("tips", true, "Loading Tips");
-    settings.Add("skip", true, "Loading Bink");
+    settings.Add("load", true, "Loading Screens");
+    settings.Add("tips", true, "Loading Tips and Doors");
+    settings.Add("skip", true, "Loading Binks");
     // settings.Add("bink", false, "Whole Bink Video");
 
     // Extras
@@ -151,8 +152,7 @@ start
     {
         if (settings["after"] && old.iNoBink == 0 && current.iNoBink == 1)
         {
-            vars.BinkID = (short)(current.iLastBink*3+current.iBinkInfo);
-            if (vars.BinkID == 0xB40)
+            if ((short)(current.iLastBink*3+current.iBinkInfo) == 0xB40)
             {
                 vars.DebugMessage("*Timer* Start");
                 return true;
@@ -173,6 +173,14 @@ split
             return true;
         }
     }
+    if (settings["finish"])
+    {
+        if (settings["begin"] && old.iLastBink != current.iLastBink && (short)(current.iLastBink*3+current.iBinkInfo) == 0xDEC)
+        {
+            vars.DebugMessage("*Timer* Finish");
+            return true;
+        }
+    }
     return false;
 }
 
@@ -180,7 +188,7 @@ isLoading
 {
     if (settings["remover"])
     {
-        if (settings["load"] && current.iLoading != 0 && current.iNoBink == 0)
+        if (settings["load"] && current.iNoBink == 0 && current.iLastBink == 4)
         {
             return true;
         }
