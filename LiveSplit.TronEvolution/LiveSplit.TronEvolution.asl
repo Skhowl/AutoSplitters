@@ -33,13 +33,10 @@ startup
         }
     });
 
-    // Start:
-    settings.Add("start", true, "Start:");
-    settings.Add("after", true, "After: Grid Development Diary Entry (Intro Cutscene)", "start");
-
-    // Finish:
-    settings.Add("finish", true, "Finish:");
-    settings.Add("begin", true, "Begin: Quorra's Rescue (Final Cutscene)", "finish");
+    // Timer:
+    settings.Add("timer", true, "Timer:");
+    settings.Add("after", true, "Start after Intro Cutscene", "timer");
+    settings.Add("begin", true, "Finish on Final Cutscene", "timer");
 
     // Split:
     settings.Add("bink_split", false, "Split: Bink movie finished/skipped");
@@ -148,15 +145,12 @@ init
 
 start
 {
-    if (settings["start"])
+    if (settings["after"] && old.iNoBink == 0 && current.iNoBink == 1)
     {
-        if (settings["after"] && old.iNoBink == 0 && current.iNoBink == 1)
+        if ((short)(current.iLastBink*3+current.iBinkInfo) == 0xB40)
         {
-            if ((short)(current.iLastBink*3+current.iBinkInfo) == 0xB40)
-            {
-                vars.DebugMessage("*Timer* Start");
-                return true;
-            }
+            vars.DebugMessage("*Timer* Start");
+            return true;
         }
     }
     return false;
@@ -173,13 +167,10 @@ split
             return true;
         }
     }
-    if (settings["finish"])
+    if (settings["begin"] && old.iLastBink != current.iLastBink && (short)(current.iLastBink*3+current.iBinkInfo) == 0xDEC)
     {
-        if (settings["begin"] && old.iLastBink != current.iLastBink && (short)(current.iLastBink*3+current.iBinkInfo) == 0xDEC)
-        {
-            vars.DebugMessage("*Timer* Finish");
-            return true;
-        }
+        vars.DebugMessage("*Timer* Finish");
+        return true;
     }
     return false;
 }
