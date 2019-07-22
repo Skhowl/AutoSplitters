@@ -5,7 +5,7 @@ This is a [LiveSplit](http://livesplit.github.io) [ASL](https://github.com/LiveS
 - BizHawk 2.2+
 - FCEUX 2.2.3
 - Nestopia 1.40
-- Higan v106
+- higan v106
 - Mesen 0.9.7
 
 ## Features
@@ -17,7 +17,7 @@ You can enable/disable the options for auto start, auto reset, and auto splittin
 
 ## Contact
 If you encounter any issues or have any feature requests, please let me know! :)
-- Twitch: https://www.twitch.tv/skhowl
+- Twitch: https://www.twitch.tv/gehsalzen
 - GitHub: https://github.com/Skhowl/AutoSplitters
 - Discord: https://www.discord.gg/3D4ckwX
-- Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ
+- Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ

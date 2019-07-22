@@ -1,10 +1,10 @@
 /*
     This is a LiveSplit ASL script for Wonder Boy (UE) on emulator.
     
-    - Twitch: https://www.twitch.tv/skhowl
+    - Twitch: https://www.twitch.tv/gehsalzen
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
-    - Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ
+    - Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ
 */
 
 state("emuhawk") {}
@@ -26,10 +26,23 @@ startup
     // Settings
     settings.Add("support", true, "Supported Emulators:");
     settings.Add("emu1", true, "BizHawk 2.2+", "support");
-    settings.Add("LastHit", true, "Last Hit on Boss");
-    settings.SetToolTip("LastHit", "Split on last hit when head is falling off.");
-    settings.Add("BossAny", true, "Area 9 (Boss Any%)", "LastHit");
-    settings.Add("Boss100", true, "Area 10 (Boss 100%)", "LastHit");
+    settings.Add("start", true, "Start timer at:");
+    settings.Add("title", true, "Title screen", "start");
+    settings.Add("boy", false, "Boy is allow to move", "start");
+    settings.Add("lasthit", true, "Split: Last Hit on Boss");
+    settings.SetToolTip("lasthit", "Split on last hit when head is falling off.");
+    settings.CurrentDefaultParent = "lasthit";
+    settings.Add("boss3", false, "Area 1");
+    settings.Add("boss7", false, "Area 2");
+    settings.Add("boss11", false, "Area 3");
+    settings.Add("boss15", false, "Area 4");
+    settings.Add("boss19", false, "Area 5");
+    settings.Add("boss23", false, "Area 6");
+    settings.Add("boss27", false, "Area 7");
+    settings.Add("boss31", false, "Area 8");
+    settings.Add("boss35", true, "Area 9 (Boss Any%)");
+    settings.Add("boss39", true, "Area 10 (Boss 100%)");
+    settings.CurrentDefaultParent = null;
     settings.Add("transition", true, "Level Transitions");
     settings.SetToolTip("transition", "Split when you entering a new area/round.");
     settings.Add("area1", true, "Area 1", "transition");
@@ -121,7 +134,7 @@ startup
         }
         else
         {
-            MessageBox.Show("Autosplitter detects an unsupported emulator.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Autosplitter detects an unsupported BizHawk emulator.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return false;
     });
@@ -154,6 +167,7 @@ startup
     {
         return new MemoryWatcherList
         {
+            new MemoryWatcher<byte>((IntPtr)wramOffset + 0x8) { Name = "BoyState" },
             new MemoryWatcher<byte>((IntPtr)wramOffset + 0xC) { Name = "GameState" },
             new MemoryWatcher<byte>((IntPtr)wramOffset + 0x115) { Name = "GameMode" },
             new MemoryWatcher<byte>((IntPtr)wramOffset + 0x128) { Name = "Level" },
@@ -173,7 +187,7 @@ init
     if (!vars.TryFindOffsets(game, modules.First().ModuleMemorySize))
         throw new Exception("[ERROR] Emulated memory not yet initialized.");
     else
-        refreshRate = 72.0;
+        refreshRate = 200/3;
 }
 
 update
@@ -188,8 +202,16 @@ start
 {
     if (vars.Changed("GameMode", 0x03))
     {
-        vars.DebugMessage("*Timer* Start");
-        return true;
+        if (settings["title"])
+        {
+            vars.DebugMessage("*Timer* Start (title screen)");
+            return true;
+        }
+        else if (settings["boy"] && vars.Changed("Boy", 4))
+        {
+            vars.DebugMessage("*Timer* Start (boy move)");
+            return true;
+        }
     }
     return false;
 }
@@ -206,28 +228,31 @@ start
 
 split
 {
-    if (settings["transition"] && vars.Level > 0 && vars.Level <= 0x27 && settings["stage" + vars.Level])
+    if (settings["transition"] && vars.Level <= 0x27 && vars.Level > vars.LevelOld)
     {
-        if (vars.Level > vars.LevelOld)
+        if (settings["stage" + vars.Level])
         {
-            vars.DebugMessage("*Split* Transition: A" + (byte)(1 + vars.LevelOld / 4) + " R" + (byte)(1 + vars.LevelOld % 4) + " >> A" + (byte)(1 + vars.Level / 4) + " R" + (byte)(1 + vars.Level % 4));
+            vars.DebugMessage("*Split* Transition: Area" + (byte)(1 + vars.LevelOld / 4) + " Round" + (byte)(1 + vars.LevelOld % 4) + " >> Area" + (byte)(1 + vars.Level / 4) + " Round" + (byte)(1 + vars.Level % 4));
             return true;
         }
     }
     
-    if (settings["BossAny"] && vars.Level == 0x23 && vars.Current("SubLevel", 0xE403))
+    if ((byte)(vars.Level % 4) == 3 && settings["boss" + vars.Level] && vars.Current("SubLevel", 0xE403) && vars.watchers["GameState"].Current > 0)
     {
-        if (vars.watchers["GameState"].Current > 0 && vars.Changed("BossHP", 0))
+        if (vars.Changed("BossHP", 0))
         {
-            vars.DebugMessage("*Split* Final: Boss Any%");
-            return true;
-        }
-    }
-    else if (settings["Boss100"] && vars.Level == 0x27 && vars.Current("SubLevel", 0xE403))
-    {
-        if (vars.watchers["GameState"].Current > 0 && vars.Changed("BossHP", 0))
-        {
-            vars.DebugMessage("*Split* Final: Boss 100%");
+            if (vars.Level == 0x23) // Area 9 Round 4
+            {
+                vars.DebugMessage("*Split* Final: Boss Any%");
+            }
+            else if (vars.Level == 0x27) // Area 10 Round 4
+            {
+                vars.DebugMessage("*Split* Final: Boss 100%");
+            }
+            else // everything else: Area ? Round 4
+            {
+                vars.DebugMessage("*Split* Boss killed in Area " + (byte)(1 + vars.Level / 4));
+            }
             return true;
         }
     }

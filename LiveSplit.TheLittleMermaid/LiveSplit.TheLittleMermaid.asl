@@ -1,10 +1,10 @@
 /*
     This is a LiveSplit ASL script for Disney's The Little Mermaid and Little Mermaid - Ningyo Hime on emulator.
     
-    - Twitch: https://www.twitch.tv/skhowl
+    - Twitch: https://www.twitch.tv/gehsalzen
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
-    - Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ
+    - Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ
     - Scan Value: 1123217096621663495
 */
 
@@ -71,7 +71,7 @@ startup
     settings.Add("emu1", true, "FCEUX 2.2.3", "support");
     settings.Add("emu2", true, "Mesen 0.9.7", "support");
     settings.Add("emu3", true, "Nestopia 1.40", "support");
-    settings.Add("emu4", true, "Higan v106", "support");
+    settings.Add("emu4", true, "higan v106", "support");
     settings.Add("fanfare", true, "Split: Fanfare");
     settings.SetToolTip("fanfare", "Split when you pickup the vase.");
     settings.Add("stage0", true, "Stage 1: Glut the Shark", "fanfare");

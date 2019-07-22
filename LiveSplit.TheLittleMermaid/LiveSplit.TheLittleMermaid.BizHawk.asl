@@ -1,10 +1,10 @@
 /*
     This is a LiveSplit ASL script for Disney's The Little Mermaid and Little Mermaid - Ningyo Hime on emulator.
     
-    - Twitch: https://www.twitch.tv/skhowl
+    - Twitch: https://www.twitch.tv/gehsalzen
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
-    - Youtube: https://www.youtube.com/channel/UCo3stXnGVNhoMx5a47zFXOQ
+    - Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ
 */
 
 state("emuhawk") {}
@@ -74,7 +74,7 @@ startup
         }
         else
         {
-            MessageBox.Show("Autosplitter detects an unsupported emulator.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Autosplitter detects an unsupported BizHawk emulator.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return false;
     });
@@ -133,7 +133,7 @@ init
     if (!vars.TryFindOffsets(game, modules.First().ModuleMemorySize))
         throw new Exception("[ERROR] Emulated memory not yet initialized.");
     else
-        refreshRate = 72.0;
+        refreshRate = 200/3;
 }
 
 update
