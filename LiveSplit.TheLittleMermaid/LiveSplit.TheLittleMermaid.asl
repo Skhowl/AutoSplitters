@@ -94,7 +94,7 @@ startup
 init
 {
     print(""+game.MainModule.FileVersionInfo);
-    refreshRate = 200/3;
+    refreshRate = 100.0;
 }
 
 start

@@ -187,7 +187,7 @@ init
     if (!vars.TryFindOffsets(game, modules.First().ModuleMemorySize))
         throw new Exception("[ERROR] Emulated memory not yet initialized.");
     else
-        refreshRate = 200/3;
+        refreshRate = 100.0;
 }
 
 update

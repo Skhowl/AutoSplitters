@@ -1,5 +1,5 @@
 /*
-    This is a LiveSplit ASL script for Tron: Evolution on PC.
+    This is a LiveSplit ASL script for Tron: Evolution on Steam.
 
     - Twitch: https://www.twitch.tv/gehsalzen
     - GitHub: https://github.com/Skhowl/AutoSplitters
@@ -142,7 +142,7 @@ init
 {
     print(""+game.MainModule.FileVersionInfo);
     print("ModuleMemorySize: "+modules.First().ModuleMemorySize);
-    refreshRate = 100;
+    refreshRate = 100.0;
 }
 
 start
