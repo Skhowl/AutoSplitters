@@ -45,10 +45,6 @@ startup
     settings.Add("title", false, "Title screen", "start");
     settings.Add("move", true, "Guy is allow to move", "start");
     
-    // End
-    settings.Add("end", true, "End timer at:");
-    settings.Add("vader", true, "Lost control after defeating Van Vader", "end");
-    
     // Transitions
     settings.Add("transition", false, "Split: Stage Transitions");
     settings.SetToolTip("transition", "Split when you entering a new stage.");
@@ -69,9 +65,19 @@ startup
     settings.Add("boss4", true, "Stage 5: Van Vader");
     settings.CurrentDefaultParent = null;
     
+    // Cutscene
+    settings.Add("scene", true, "Split: Cutscene starts (lost control)");
+    settings.CurrentDefaultParent = "scene";
+    settings.Add("scene0", true, "Stage 1: Aggar");
+    settings.Add("scene1", true, "Stage 2: Octeyes");
+    settings.Add("scene2", true, "Stage 3: Moldy Snail");
+    settings.Add("scene3", true, "Stage 4: Crocodile Worm");
+    settings.Add("scene4", true, "Stage 5: Van Vader");
+    settings.CurrentDefaultParent = null;
+    
     // Losing Power
-    settings.Add("stolen", true, "Split: Neff steal your Power");
-    settings.CurrentDefaultParent = "stolen";
+    settings.Add("power", false, "Split: Neff steal your Power");
+    settings.CurrentDefaultParent = "power";
     settings.Add("power0", true, "Stage 1: Aggar");
     settings.Add("power1", true, "Stage 2: Octeyes");
     settings.Add("power2", true, "Stage 3: Moldy Snail");
@@ -123,24 +129,24 @@ reset
 
 split
 {
-    // End Timer
-    if (settings["vader"] && current.Stage == 0x04 && old.PlayerState == 0 && current.PlayerState == 0x19)
+    // Cutscene
+    if (settings["scene" + current.Stage] && old.PlayerState == 0 && current.PlayerState == 0x19)
     {
-        vars.DebugMessage("*Timer* Finish");
+        vars.DebugMessage("*Timer* Cutscene starts at stage " + (int)(current.Stage + 1));
         return true;
     }
     
     // Losing Power
     if (old.PowerLevel >= 0x03 && current.PowerLevel == 0 && settings["power" + current.Stage])
     {
-        vars.DebugMessage("*Split* Losing Power on Stage " + (int)(current.Stage + 1));
+        vars.DebugMessage("*Split* Losing power on stage " + (int)(current.Stage + 1));
         return true;
     }
     
     // Transitions
     if (current.Stage > old.Stage && settings["stage" + current.Stage])
     {
-        vars.DebugMessage("*Split* Transition to Stage " + current.Stage);
+        vars.DebugMessage("*Split* Transition to stage " + current.Stage);
         return true;
     }
     
@@ -171,7 +177,6 @@ split
                 }
                 break;
         }
-        return false;
     }
     
     return false;
