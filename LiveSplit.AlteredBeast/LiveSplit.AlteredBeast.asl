@@ -43,27 +43,7 @@ startup
     // Start
     settings.Add("start", true, "Start timer at:");
     settings.Add("title", false, "Title screen", "start");
-    settings.Add("move", true, "Guy is allow to move", "start");
-    
-    // Transitions
-    settings.Add("transition", false, "Split: Stage Transitions");
-    settings.SetToolTip("transition", "Split when you entering a new stage.");
-    settings.CurrentDefaultParent = "transition";
-    settings.Add("stage1", true, "Stage 2");
-    settings.Add("stage2", true, "Stage 3");
-    settings.Add("stage3", true, "Stage 4");
-    settings.Add("stage4", true, "Stage 5");
-    settings.CurrentDefaultParent = null;
-    
-    // Last Hit
-    settings.Add("lasthit", false, "Split: Last Hit on Boss");
-    settings.CurrentDefaultParent = "lasthit";
-    settings.Add("boss0", true, "Stage 1: Aggar");
-    settings.Add("boss1", true, "Stage 2: Octeyes");
-    settings.Add("boss2", true, "Stage 3: Moldy Snail");
-    settings.Add("boss3", true, "Stage 4: Crocodile Worm");
-    settings.Add("boss4", true, "Stage 5: Van Vader");
-    settings.CurrentDefaultParent = null;
+    settings.Add("move", true, "Guy is allow to move (START TIMER)", "start");
     
     // Cutscene
     settings.Add("scene", true, "Split: Cutscene starts (lost control)");
@@ -72,16 +52,36 @@ startup
     settings.Add("scene1", true, "Stage 2: Octeyes");
     settings.Add("scene2", true, "Stage 3: Moldy Snail");
     settings.Add("scene3", true, "Stage 4: Crocodile Worm");
-    settings.Add("scene4", true, "Stage 5: Van Vader");
+    settings.Add("scene4", true, "Stage 5: Van Vader (END TIMER)");
+    settings.CurrentDefaultParent = null;
+    
+    // Last Hit
+    settings.Add("boss", false, "Split: Last Hit on Boss");
+    settings.CurrentDefaultParent = "boss";
+    settings.Add("boss0", false, "Stage 1: Aggar");
+    settings.Add("boss1", false, "Stage 2: Octeyes");
+    settings.Add("boss2", false, "Stage 3: Moldy Snail");
+    settings.Add("boss3", false, "Stage 4: Crocodile Worm");
+    settings.Add("boss4", false, "Stage 5: Van Vader");
+    settings.CurrentDefaultParent = null;
+    
+    // Transitions
+    settings.Add("stage", false, "Split: Stage Transitions");
+    settings.SetToolTip("stage", "Split when you entering a new stage.");
+    settings.CurrentDefaultParent = "stage";
+    settings.Add("stage1", false, "Stage 2");
+    settings.Add("stage2", false, "Stage 3");
+    settings.Add("stage3", false, "Stage 4");
+    settings.Add("stage4", false, "Stage 5");
     settings.CurrentDefaultParent = null;
     
     // Losing Power
     settings.Add("power", false, "Split: Neff steal your Power");
     settings.CurrentDefaultParent = "power";
-    settings.Add("power0", true, "Stage 1: Aggar");
-    settings.Add("power1", true, "Stage 2: Octeyes");
-    settings.Add("power2", true, "Stage 3: Moldy Snail");
-    settings.Add("power3", true, "Stage 4: Crocodile Worm");
+    settings.Add("power0", false, "Stage 1: Aggar");
+    settings.Add("power1", false, "Stage 2: Octeyes");
+    settings.Add("power2", false, "Stage 3: Moldy Snail");
+    settings.Add("power3", false, "Stage 4: Crocodile Worm");
     
     vars.BossNames = new string[]
     {
