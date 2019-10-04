@@ -12,14 +12,14 @@
 // Kega Fusion v3.64
 state("fusion")
 {
-    // base 0x0000 address of RAM : 0x2A52D4, 0x0;
-    byte GameState   : 0x2A52D4, 0xB104;
-    byte PlayerState : 0x2A52D4, 0xD064;
-    byte Stage       : 0x2A52D4, 0xFE15;
-    byte PowerLevel  : 0x2A52D4, 0xD02B;
-    byte BossShared  : 0x2A52D4, 0xE365; // Aggar, Crocodile Worm, Van Vader
-    byte BossEyes    : 0x2A52D4, 0xE3A5; // Octeyes
-    byte BossSnail   : 0x2A52D4, 0xE377; // Moldy Snail
+    // base 0x0000 address of RAM : 0x002A52D4, 0x0000;
+    byte GameState   : 0x002A52D4, 0xB104;
+    byte PlayerState : 0x002A52D4, 0xD064;
+    byte Stage       : 0x002A52D4, 0xFE15;
+    byte PowerLevel  : 0x002A52D4, 0xD02B;
+    byte BossShared  : 0x002A52D4, 0xE365; // Aggar, Crocodile Worm, Van Vader
+    byte BossEyes    : 0x002A52D4, 0xE3A5; // Octeyes
+    byte BossSnail   : 0x002A52D4, 0xE377; // Moldy Snail
 }
 
 startup
@@ -62,20 +62,29 @@ startup
     // Last Hit
     settings.Add("lasthit", false, "Split: Last Hit on Boss");
     settings.CurrentDefaultParent = "lasthit";
-    settings.Add("boss0", true, "Aggar");
-    settings.Add("boss1", true, "Octeyes");
-    settings.Add("boss2", true, "Moldy Snail");
-    settings.Add("boss3", true, "Crocodile Worm");
-    settings.Add("boss4", true, "Van Vader");
+    settings.Add("boss0", true, "Stage 1: Aggar");
+    settings.Add("boss1", true, "Stage 2: Octeyes");
+    settings.Add("boss2", true, "Stage 3: Moldy Snail");
+    settings.Add("boss3", true, "Stage 4: Crocodile Worm");
+    settings.Add("boss4", true, "Stage 5: Van Vader");
     settings.CurrentDefaultParent = null;
     
     // Losing Power
     settings.Add("stolen", true, "Split: Neff steal your Power");
     settings.CurrentDefaultParent = "stolen";
-    settings.Add("power0", true, "Aggar");
-    settings.Add("power1", true, "Octeyes");
-    settings.Add("power2", true, "Moldy Snail");
-    settings.Add("power3", true, "Crocodile Worm");
+    settings.Add("power0", true, "Stage 1: Aggar");
+    settings.Add("power1", true, "Stage 2: Octeyes");
+    settings.Add("power2", true, "Stage 3: Moldy Snail");
+    settings.Add("power3", true, "Stage 4: Crocodile Worm");
+    
+    vars.BossNames = new string[]
+    {
+        "Aggar",
+        "Octeyes",
+        "Moldy Snail",
+        "Crocodile Worm",
+        "Van Vader"
+    };
 }
 
 init
@@ -93,7 +102,7 @@ start
             vars.DebugMessage("*Timer* Start (title screen)");
             return true;
         }
-        else if (settings["move"] && old.BossSnail == 0xC0 && current.BossSnail == 0)
+        if (settings["move"] && old.BossSnail == 0xC0 && current.BossSnail == 0)
         {
             vars.DebugMessage("*Timer* Start (enable to move)");
             return true;
@@ -104,7 +113,7 @@ start
 
 reset
 {
-    if ((old.GameState != current.GameState && current.GameState == 0) || current.GameState == 6)
+    if ((old.GameState != current.GameState && current.GameState == 0) || current.GameState == 0x06)
     {
         vars.DebugMessage("*Timer* Reset");
         return true;
@@ -121,6 +130,13 @@ split
         return true;
     }
     
+    // Losing Power
+    if (old.PowerLevel >= 0x03 && current.PowerLevel == 0 && settings["power" + current.Stage])
+    {
+        vars.DebugMessage("*Split* Losing Power on Stage " + (int)(current.Stage + 1));
+        return true;
+    }
+    
     // Transitions
     if (current.Stage > old.Stage && settings["stage" + current.Stage])
     {
@@ -129,17 +145,10 @@ split
     }
     
     // Last Hit
-    if (settings["boss" + current.Stage] && current.GameState == 0x04)
+    if (settings["boss" + current.Stage])
     {
         switch ((int)current.Stage)
         {
-            case 0: // Aggar
-                if (old.BossShared > current.BossShared && current.BossShared == 0)
-                {
-                    vars.DebugMessage("*Split* Aggar killed");
-                    return true;
-                }
-                break;
             case 1: // Octeyes
                 if (old.BossEyes > current.BossEyes && current.BossEyes == 0)
                 {
@@ -154,29 +163,15 @@ split
                     return true;
                 }
                 break;
-            case 3: // Crocodile Worm
+            default: // Aggar - Octeyes - Van Vader
                 if (old.BossShared > current.BossShared && current.BossShared == 0)
                 {
-                    vars.DebugMessage("*Split* Crocodile Worm killed");
-                    return true;
-                }
-                break;
-            default: // Van Vader
-                if (old.BossShared > current.BossShared && current.BossShared == 0)
-                {
-                    vars.DebugMessage("*Split* Van Vader killed");
+                    vars.DebugMessage("*Split* " + vars.BossNames[current.Stage] + " killed");
                     return true;
                 }
                 break;
         }
         return false;
-    }
-    
-    // Losing Power
-    if (old.PlayerState == 0x19 && current.PlayerState == 0x1B && settings["power" + current.Stage])
-    {
-        vars.DebugMessage("*Split* Losing Power on Stage " + (int)(current.Stage + 1));
-        return true;
     }
     
     return false;
