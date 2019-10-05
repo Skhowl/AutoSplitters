@@ -144,7 +144,7 @@ start
     return false;
 }
 
-/*reset // Need to find a better address
+reset // Need to find a better address
 {
     if (old.GameMode != current.GameMode && current.GameMode == 0)
     {
@@ -152,7 +152,7 @@ start
         return true;
     }
     return false;
-}*/
+}
 
 split
 {
