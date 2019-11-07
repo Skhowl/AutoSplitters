@@ -143,7 +143,7 @@ init
 
 start
 {
-    if (settings["start"] && old.iTutCut == 0x9F && current.iTutCut == 0x96)
+    if (settings["start"] && old.iTutCut == 0x9E && current.iTutCut == 0x96)
     {
         vars.DebugMessage("*Timer* Start");
         vars.LastBink = 0;
