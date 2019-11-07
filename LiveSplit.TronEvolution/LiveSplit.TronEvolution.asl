@@ -154,9 +154,9 @@ start
 
 split
 {
-    vars.BinkID = (short)(current.iLastBink*3+current.iBinkInfo);
     if (settings["bink_split"] && old.iNoBink == 0 && current.iNoBink == 1)
     {
+        vars.BinkID = (short)(current.iLastBink*3+current.iBinkInfo);
         if (vars.LastBink != vars.BinkID && settings.ContainsKey("bik_"+vars.BinkID) && settings["bik_"+vars.BinkID])
         {
             vars.DebugMessage("*Split* BinkID: "+vars.BinkID);
@@ -164,7 +164,7 @@ split
             return true;
         }
     }
-    if (settings["finish"] && vars.BinkID == 0xD64 && old.iTutCut == 0x82 && current.iTutCut == 0x9E)
+    if (settings["finish"] && (short)(current.iLastBink*3+current.iBinkInfo) == 0xD64 && old.iTutCut == 0x82 && current.iTutCut == 0x9E)
     {
         vars.DebugMessage("*Timer* Finish");
         return true;
