@@ -17,7 +17,7 @@ state("gridgame")
     byte iBinkInfo  : "binkw32.dll", 0x27245;
     // Pointer
     byte iNoSkip : 0x1E7E63C, 0xD7;
-    byte iTutCut : 0x1E8B664, 0x130, 0x7C, 0, 0x28, 0x382;
+    byte iTutCut : 0x1E89C18, 0, 0x908, 0xC, 0x382;
 }
 
 startup
