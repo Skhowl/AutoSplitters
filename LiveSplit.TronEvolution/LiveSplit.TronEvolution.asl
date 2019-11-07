@@ -17,6 +17,7 @@ state("gridgame")
     byte iBinkInfo  : "binkw32.dll", 0x27245;
     // Pointer
     byte iNoSkip : 0x1E7E63C, 0xD7;
+    byte iTutCut : 0x1E8B664, 0x130, 0x7C, 0, 0x28, 0x382;
 }
 
 startup
@@ -34,18 +35,13 @@ startup
     });
 
     // Load remover:
-    settings.Add("remover", true, "Load Remover");
-    settings.CurrentDefaultParent = "remover";
-    settings.Add("load", true, "Loading Screens");
-    settings.Add("tips", true, "Loading Tips and Doors");
-    settings.Add("skip", true, "Loading Binks");
-    settings.CurrentDefaultParent = null;
+    settings.Add("remover", true, "Load Remover use Game Time!");
 
     // Timer:
     settings.Add("timer", true, "Timer:");
     settings.CurrentDefaultParent = "timer";
-    settings.Add("start", true, "Start after Intro Cutscene");
-    settings.Add("finish", true, "Finish on Final Cutscene");
+    settings.Add("start", true, "Start after Introduction (enable to move)");
+    settings.Add("finish", true, "Finish after Final Hit (screen goes black)");
     settings.CurrentDefaultParent = null;
 
     // Split:
@@ -147,7 +143,7 @@ init
 
 start
 {
-    if (settings["start"] && old.iNoBink == 0 && current.iNoBink == 1 && (short)(current.iLastBink*3+current.iBinkInfo) == 0xB40)
+    if (settings["start"] && old.iTutCut == 0x9F && current.iTutCut == 0x96)
     {
         vars.DebugMessage("*Timer* Start");
         vars.LastBink = 0;
@@ -158,9 +154,9 @@ start
 
 split
 {
+    vars.BinkID = (short)(current.iLastBink*3+current.iBinkInfo);
     if (settings["bink_split"] && old.iNoBink == 0 && current.iNoBink == 1)
     {
-        vars.BinkID = (short)(current.iLastBink*3+current.iBinkInfo);
         if (vars.LastBink != vars.BinkID && settings.ContainsKey("bik_"+vars.BinkID) && settings["bik_"+vars.BinkID])
         {
             vars.DebugMessage("*Split* BinkID: "+vars.BinkID);
@@ -168,7 +164,7 @@ split
             return true;
         }
     }
-    if (settings["finish"] && old.iLastBink != current.iLastBink && (short)(current.iLastBink*3+current.iBinkInfo) == 0xDEC)
+    if (settings["finish"] && vars.BinkID == 0xD64 && old.iTutCut == 0x82 && current.iTutCut == 0x9E)
     {
         vars.DebugMessage("*Timer* Finish");
         return true;
@@ -178,22 +174,7 @@ split
 
 isLoading
 {
-    if (settings["remover"])
-    {
-        if (settings["load"] && current.iNoBink == 0 && current.iLastBink == 4)
-        {
-            return true;
-        }
-        if (settings["tips"] && current.iBGLevel == 1)
-        {
-            return true;
-        }
-        if (settings["skip"] && current.iNoSkip != 0)
-        {
-            return true;
-        }
-    }
-    return false;
+    return (current.iNoBink == 0 && current.iLastBink == 4) || current.iBGLevel == 1 || current.iNoSkip != 0;
 }
 
 exit
