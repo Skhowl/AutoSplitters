@@ -1,10 +1,9 @@
 /*
     This is a LiveSplit ASL script for Altered Beast on emulator.
     
-    - Twitch: https://www.twitch.tv/gehsalzen
+    - Twitch: https://www.twitch.tv/skhowl
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
-    - Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ
     - Scan Values:  7301730173017301    8287031239400059649
                     516450644D644C64    5864901006468598884
 */
@@ -14,7 +13,7 @@ state("fusion")
 {
     // base 0x0000 address of RAM : 0x002A52D4, 0x0000;
     byte GameState   : 0x002A52D4, 0xB104;
-    byte PlayerState : 0x002A52D4, 0xD064;
+    byte PlayerState : 0x002A52D4, 0xD024;
     byte Stage       : 0x002A52D4, 0xFE15;
     byte PowerLevel  : 0x002A52D4, 0xD02B;
     byte BossShared  : 0x002A52D4, 0xE365; // Aggar, Crocodile Worm, Van Vader
@@ -43,7 +42,7 @@ startup
     // Start
     settings.Add("start", true, "Start timer at:");
     settings.Add("title", false, "Title screen", "start");
-    settings.Add("move", true, "Guy is allow to move (START TIMER)", "start");
+    settings.Add("move", true, "Guy is allow to move (START)", "start");
     
     // Cutscene
     settings.Add("scene", true, "Split: Cutscene starts (lost control)");
@@ -52,7 +51,7 @@ startup
     settings.Add("scene1", true, "Stage 2: Octeyes");
     settings.Add("scene2", true, "Stage 3: Moldy Snail");
     settings.Add("scene3", true, "Stage 4: Crocodile Worm");
-    settings.Add("scene4", true, "Stage 5: Van Vader (END TIMER)");
+    settings.Add("scene4", true, "Stage 5: Van Vader (END)");
     settings.CurrentDefaultParent = null;
     
     // Last Hit
@@ -101,7 +100,7 @@ init
 
 start
 {
-    if (current.GameState == 0x04)
+    if (current.GameState == 0x01 || current.GameState == 0x04)
     {
         if (settings["title"])
         {
@@ -130,7 +129,7 @@ reset
 split
 {
     // Cutscene
-    if (settings["scene" + current.Stage] && old.PlayerState == 0 && current.PlayerState == 0x19)
+    if (settings["scene" + current.Stage] && old.PlayerState != 0x19 && current.PlayerState == 0x19)
     {
         vars.DebugMessage("*Timer* Cutscene starts at stage " + (int)(current.Stage + 1));
         return true;
@@ -169,7 +168,7 @@ split
                     return true;
                 }
                 break;
-            default: // Aggar - Octeyes - Van Vader
+            default: // Aggar - Crocodile Worm - Van Vader
                 if (old.BossShared > current.BossShared && current.BossShared == 0)
                 {
                     vars.DebugMessage("*Split* " + vars.BossNames[current.Stage] + " killed");
