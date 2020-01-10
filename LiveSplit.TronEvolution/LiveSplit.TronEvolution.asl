@@ -1,10 +1,9 @@
 /*
     This is a LiveSplit ASL script for Tron: Evolution on Steam.
 
-    - Twitch: https://www.twitch.tv/gehsalzen
+    - Twitch: https://www.twitch.tv/skhowl
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
-    - Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ
 */
 
 // GridGame 1.01
@@ -38,12 +37,7 @@ startup
     settings.Add("remover", true, "Load Remover use Game Time!");
 
     // Timer:
-    settings.Add("timer", true, "Timer:");
-    settings.CurrentDefaultParent = "timer";
-    settings.Add("start", true, "Start after Introduction (enable to move)");
-    settings.Add("finish", true, "End after Final Hit (screen goes black)");
-    settings.SetToolTip("finish", "Important! Need an extra Split.");
-    settings.CurrentDefaultParent = null;
+    settings.Add("start", true, "Timer: Start after Introduction (enable to move)");
 
     // Split:
     settings.Add("bink_split", true, "Split: Pre-rendered cutscene finished/skipped");
@@ -147,6 +141,7 @@ startup
     settings.SetToolTip("bik_3144", "Tron Evolution\\GridGame\\Movies\\Sc3_02_02a.bik");
     settings.Add("bik_3428", false, "You'll overload the Drive");
     settings.SetToolTip("bik_3428", "Tron Evolution\\GridGame\\Movies\\Sc3_02_02b.bik");
+    settings.Add("finish", true, "Objective Complete (End after Final Hit when screen goes black)");
 
     // Extras
     vars.BinkID = 0;
