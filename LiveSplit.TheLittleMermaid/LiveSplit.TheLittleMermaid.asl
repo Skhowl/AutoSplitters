@@ -1,10 +1,9 @@
 /*
     This is a LiveSplit ASL script for Disney's The Little Mermaid and Little Mermaid - Ningyo Hime on emulator.
     
-    - Twitch: https://www.twitch.tv/gehsalzen
+    - Twitch: https://www.twitch.tv/skhowl
     - GitHub: https://github.com/Skhowl/AutoSplitters
     - Discord: https://www.discord.gg/3D4ckwX
-    - Youtube: https://www.youtube.com/channel/UCY-pqgCPPUCqQ7R3RbQI-uQ
     - Scan Value: 1123217096621663495
 */
 
