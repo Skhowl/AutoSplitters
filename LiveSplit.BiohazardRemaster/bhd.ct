@@ -8,7 +8,7 @@
     <CheatEntry>
       <ID>61</ID>
       <Description>"Timer"</Description>
-      <LastState Value="6204.865723" RealAddress="2D0D8B4C"/>
+      <LastState Value="0.0" RealAddress="2D0D8B4C"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>Float</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -30,7 +30,7 @@
     <CheatEntry>
       <ID>84</ID>
       <Description>"Area ID"</Description>
-      <LastState Value="5" RealAddress="2D0D8B50"/>
+      <LastState Value="0" RealAddress="2D0D8B50"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -41,7 +41,7 @@
     <CheatEntry>
       <ID>83</ID>
       <Description>"Room ID"</Description>
-      <LastState Value="19" RealAddress="2D0D8B54"/>
+      <LastState Value="0" RealAddress="2D0D8B54"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -52,7 +52,7 @@
     <CheatEntry>
       <ID>57</ID>
       <Description>"Camera"</Description>
-      <LastState Value="3" RealAddress="2D0D8CB0"/>
+      <LastState Value="0" RealAddress="2D0D8CB0"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -63,7 +63,7 @@
     <CheatEntry>
       <ID>74</ID>
       <Description>"Playing 1st"</Description>
-      <LastState Value="1360" RealAddress="02EE1464"/>
+      <LastState Value="0" RealAddress="02EE1464"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0098A0B0</Address>
@@ -74,7 +74,7 @@
     <CheatEntry>
       <ID>75</ID>
       <Description>"Playing 2nd"</Description>
-      <LastState Value="1360" RealAddress="02EE1464"/>
+      <LastState Value="0" RealAddress="02EE1464"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0098A1CC</Address>
