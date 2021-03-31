@@ -1,0 +1,58 @@
+
+Ch.1    1_01
+Ch.1    1_03    (Clear all hostiles from the sector.)
+Ch.1    1_03_B  (Escape the End of Line)
+Ch.2    1_04
+Ch.3    2_01
+Ch.3    2_02    (Escape Arjia City)
+Ch.4    2_03
+Ch.5    2_05
+Ch.6    2_09
+Ch.7    3_01
+
+1_01.TheWorld:PersistentLevel.PgPlayerStart_12
+1_01.TheWorld:PersistentLevel.PgPlayerStart_4
+1_01.TheWorld:PersistentLevel.PgPlayerStart_6
+1_01.TheWorld:PersistentLevel.PgPlayerStart_16
+1_01.TheWorld:PersistentLevel.PgPlayerStart_8
+1_01.TheWorld:PersistentLevel.PgPlayerStart_9
+1_01.TheWorld:PersistentLevel.PgPlayerStart_14
+1_01.TheWorld:PersistentLevel.PgPlayerStart_11
+1_01.TheWorld:PersistentLevel.PgPlayerStart_3
+1_01.TheWorld:PersistentLevel.PgPlayerStart_5
+1_01.TheWorld:PersistentLevel.PgPlayerStart_10
+1_01.TheWorld:PersistentLevel.PgPlayerStart_13
+1_01.TheWorld:PersistentLevel.PgPlayerStart_17
+1_01.TheWorld:PersistentLevel.PgPlayerStart_18
+1_01.TheWorld:PersistentLevel.PgPlayerStart_7
+1_01.TheWorld:PersistentLevel.PgPlayerStart_2
+1_01.TheWorld:PersistentLevel.PgPlayerStart_0
+1_01.TheWorld:PersistentLevel.PgPlayerStart_20
+1_01.TheWorld:PersistentLevel.PgPlayerStart_1
+
+1_03.TheWorld:PersistentLevel.PgPlayerStart_4
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+1_03.TheWorld:PersistentLevel.PgPlayerStart_
+

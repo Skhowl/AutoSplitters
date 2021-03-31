@@ -1,0 +1,70 @@
+Chapter 1:
+Sc1_01_03.bik
+Sc1_01_06.bik
+101AbraxDiseaseTaunt.bik
+101AbraxasJumpDown.bik
+101AbraxasJumpUp.bik
+101AbraxInsigTaunt.bik
+Sc1_01_07.bik
+Sc1_03_01.bik
+Sc1_03_03.bik
+Sc1_03_04.bik
+Sc1_03_05.bik
+
+Chapter 2:
+Sc1_04_01.bik
+Sc2_01_01.bik
+
+Chapter 3:
+Sc2_01_02.bik
+Sc2_01_03.bik
+Sc2_02_02.bik
+
+Chapter 4:
+Sc2_04_01.bik
+204CluSpeech1.bik
+204CluSpeech2.bik
+204CluSpeech3.bik
+204CluSpeech4.bik
+204CluSpeech5.bik
+Sc2_04_05.bik
+
+Chapter 5:
+Sc2_05_01.bik
+Sc2_05_02.bik
+206CoreWinSeq.bik
+Sc2_06_01.bik
+Sc2_06_02.bik
+207GibsonDeath.bik
+208BikeJump.bik
+
+Chapter 6:
+Sc2_10_01.bik
+Sc2_10_02.bik
+
+Chapter 7:
+Sc3_01_01.bik
+301EnterRegulator.bik
+Sc3_02_01.bik
+Sc3_02_02a.bik
+Sc3_02_02b.bik
+Sc3_03_01.bik
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

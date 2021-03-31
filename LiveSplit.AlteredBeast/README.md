@@ -15,4 +15,4 @@ You can enable/disable the options for auto start, auto reset, and auto splittin
 If you encounter any issues or have any feature requests, please let me know! :)
 - Twitch: https://www.twitch.tv/skhowl
 - GitHub: https://github.com/Skhowl/AutoSplitters
-- Discord: https://www.discord.gg/3D4ckwX
+- Discord: https://discord.gg/pyMGEeV

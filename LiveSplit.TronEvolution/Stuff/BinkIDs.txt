@@ -1,0 +1,76 @@
+Loading: 0004
+Intro: 03B0:30 (B40)
+
+ID =binkw32.dll+27221 (short)
+Add=binkw32.dll+27245 (byte)
+ID*3+Add
+
+Chapter 1:
+Quorra Introduced: 02D4:10 (88C)
+Radia Installation: 0384:40 (ACC)
+Abraxas Disease Taunt: 03EC:08 (BCC)
+Abraxas Jump Down: 04B0:04 (E14)
+Abraxas Jump Up: 03E0:04 (BA4)
+Abraxas Jump Down: 04B0:04 (E14)
+Abraxas Jump Up: 03E0:04 (BA4)
+Abraxas Insignificance Taunt: 03B4:08 (B24)
+Monitor Disc Against Abraxas: 0400:54 (C54)
+CLU Attacks Flynn: 0408:18 (C30)
+Quorra Passing Grabble Function: 0270:08 (758)
+Quorra Talk finding Zuse: 01F8:14 (5FC)
+Quorra Zuse EOL Club Talk: 0264:5C (788)
+
+Chapter 2:
+Quorra Talk after EOTLC Explosion: 025C:10 (724)
+Solar Sailer Ride: 02DC:14 (8A8)
+
+Chapter 3:
+Talk finding Radia in the HUB: 0328:0C (984)
+Radia Talk finding Gibson: 0310:50 (980)
+Escaped Arjia City: 0230:10 (6A0)
+
+Chapter 4:
+Gibson 1. Meeting Game Grid: 02BC:20 (854)
+CLU Speech 1: 0214:0C (648)
+CLU Speech 2: 023C:08 (6BC)
+CLU Speech 3: 0250:08 (6F8)
+CLU Speech 4: 0228:0C (684)
+CLU Speech 5: 01F4:0C (5E8)
+Gibson Escpae from Game Grid: 0274:28 (784)
+
+Chapter 5:
+Gibson Friends loss Explanation: 02D4:0C (888)
+Escape from Growing Abraxas: 032C:14 (998)
+Reactor Elevator Escape: 04FC:0C (F00)
+Getting Light Cycle: 0244:14 (6E0)
+Abraxas infects Gibson: 03A0:24 (B04)
+Gibson dying: 0498:0C (DD4)
+Light Cycle Jump: 0358:08 (A10)
+
+Chapter 6:
+Abraxas killed Radia: 034C:58 (A3C)
+Buried Abraxas: 0468:14 (D4C)
+
+Chapter 7:
+Meeting Flynn: 02FC:2C (920)
+Enter Regulator: 0354:18 (A14)
+CLU talk with Quorra: 014C:18 (3FC)
+Abraxas appears: 0410:18 (C48)
+Abraxas overload: 0474:08 (D64)
+Game is done: 0488:54 (DEC)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

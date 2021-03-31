@@ -3,7 +3,7 @@
     
     - Twitch: https://www.twitch.tv/skhowl
     - GitHub: https://github.com/Skhowl/AutoSplitters
-    - Discord: https://www.discord.gg/3D4ckwX
+    - Discord: https://discord.gg/pyMGEeV
     - Scan Values:  7301730173017301    8287031239400059649
                     516450644D644C64    5864901006468598884
 */

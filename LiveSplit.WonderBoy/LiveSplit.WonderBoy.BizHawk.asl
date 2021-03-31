@@ -3,7 +3,7 @@
     
     - Twitch: https://www.twitch.tv/skhowl
     - GitHub: https://github.com/Skhowl/AutoSplitters
-    - Discord: https://www.discord.gg/3D4ckwX
+    - Discord: https://discord.gg/pyMGEeV
 */
 
 state("emuhawk") {}

@@ -1,0 +1,19 @@
+HUD_TUTRL_JUMP      Press %btn_a to jump gaps.
+HUD_TUTRL_WALL      Hold %btn_RT and run into a wall to perform a wall run.
+HUD_TUTRL_MANTLE    Hold %btn_RT and press %btn_a to run up the wall and grab the ledge.
+
+POP_TUTRL_
+
+278807552
+Camara? -0x0E
+130     normal
+131     scripted cam
+150     normal no action buttons
+158     video/tutorial massages
+159     cutscene
+
+Actions:
+16777216    laufen
+131584      cutscene
+65792       chargen
+256         release charge

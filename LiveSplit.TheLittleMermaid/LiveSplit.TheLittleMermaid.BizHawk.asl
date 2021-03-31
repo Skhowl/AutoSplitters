@@ -3,7 +3,7 @@
     
     - Twitch: https://www.twitch.tv/skhowl
     - GitHub: https://github.com/Skhowl/AutoSplitters
-    - Discord: https://www.discord.gg/3D4ckwX
+    - Discord: https://discord.gg/pyMGEeV
 */
 
 state("emuhawk") {}
@@ -45,6 +45,7 @@ startup
             { 6627328, 0 }, //BizHawk 2.2.2
             { 7061504, 0 }, //BizHawk 2.3
             { 7249920, 0 }, //BizHawk 2.3.1
+            { 5406720, 0 }, //BizHawk 2.4.0
         };
         
         long wramOffset = 0;
@@ -137,6 +138,7 @@ init
 
 update
 {
+    // print(modules.First().ModuleMemorySize.ToString());
     vars.watchers.UpdateAll(game);
     vars.Stage = vars.watchers["Stage"].Current;
 }
