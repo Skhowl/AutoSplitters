@@ -1,0 +1,132 @@
+01:Silver survival knife (Jill)
+02:Grey survival knife (Chris)
+03:Handgun - Stars custom 9mm
+04:Self defense gun
+05:Handgun - .40 S&amp;W
+06:Shotgun
+07:Grenade Launcher - Normal (Jill)
+08:Grenade Launcher - Acid (Jill)
+09:Grenade Launcher - Incendiary (Jill)
+0A:Rocket Launcher
+0B:Magnum Revolver
+0C:Flame Thrower (Chris)
+0D:Assault shotgun
+0E:Rocket Launcher - Fire and Forget
+0F:Barrys 44 Magnum
+10:Grenade Shells
+11:Handgun Magazine
+12:Shotgun shells
+13:Acid shells
+14:Incendiary shells
+15:Golden Arrow
+16:Book of curse
+17:Coin
+18:Collar
+19:Magnum rounds
+1A:Broach
+1B:Fuel canteen
+1C:Arrowhead
+1D:Imitation of a key
+1E:Residence key - Gallery
+1F:Fuel supply capsule
+20:Musical score - incomplete
+21:First aid spray
+22:Green herb
+23:Red herb
+24:Blue herb
+25:Mixed herb - Green/small
+26:Mixed herb - Green/large
+27:Mixed herb - Red/green/small
+28:Mixed herb - Red/green/large
+29:Mixed herb - Blue/green/small
+2A:Mixed herb - Blue/green/large
+2B:Lockpicks
+2C:Old key
+2D:Sword key
+2E:Armor key
+2F:Shield key
+30:Helmet key
+31:Room 001 key
+32:Room 003 key
+33:Medal of eagle
+34:Medal of wolf
+35:Stone &amp; metal object
+36:Lab key - Power
+37:Master key
+38:Star crest
+39:Wind crest
+3A:Sun crest
+3B:Moon crest
+3C:Crank - square
+3D:Crank - Hex
+3E:Closet key
+3F:Emblem key
+40:Stone ring
+41:Metal object
+42:Survival knife 2
+43:Battery
+44:Ink ribbons
+45:Emblem
+46:Gold emblem
+47:Musical score - complete
+48:Red gemstone
+49:Blue gemstone
+4A:Yellow gemstone
+4B:Broken shotgun
+4C:Herbicide
+4D:Lighter
+4E:Serum
+4F:Transceiver
+50:Empty acid bottle
+51:Water bottle
+52:UMB No 3 bottle
+53:NP-004 bottle
+54:Yellow - 6 bottle
+55:UMB No 7 bottle
+56:UMB No 10 bottle
+57:VP - 017 bottle
+58:V jolt bottle
+59 It Hasnt Been Used
+5A:Red book
+5B:Last book vol 1
+5C:Last book vol 2
+5D:MO disc
+5E:MO disc1
+5F:MO disc2
+60:Dog whistle
+61:Fuse unit
+62:Capsule
+63:Jewellery box - white
+64:Insecticide spray
+65:First aid box
+66:Jewellery box - orange
+67:Jewellery box - white 2
+68:First aid box1
+69:First aid box2
+6A:Signal rockets
+6B:Broken flamethrower
+6C:Wooden mount
+6D:Slide filter
+6E:Control room key
+6F:Fuel supply capsule1
+70:Escape dagger
+71:Flash grenade
+72:Stun gun
+73:Bee specimen
+74:Lure of a bee
+75:Fish hook
+76:Lure of a bee + fish hook
+77:X-Ray - 'Clark David'
+78:X-Ray - 'Gail Holland'
+79:Battery pack
+7A:Shaft
+7B:Cylinder
+7C:Cylinder shaft
+7D:Death mask - no eyes, nose or mouth
+7E:Death mask - no eyes
+7F:Death mask - no nose
+80:Death mask - mouth
+81:Musical score - 1 page
+82:Map
+83:First aid box3
+84:First aid box4
