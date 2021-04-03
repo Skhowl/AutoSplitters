@@ -42,7 +42,7 @@ state("bhd")
 	int dslot1 : "bhd.exe", 0x97C9C0, 0x5088;
 	int dslot2 : "bhd.exe", 0x97C9C0, 0x508C;
 	int area : "bhd.exe", 0x97C9C0, 0xE4750;
-	int room : "bhd.exe", 0x97C9C0, 0xE48AC;
+	int room : "bhd.exe", 0x97C9C0, 0xE4754;
 	int camera : "bhd.exe", 0x97C9C0, 0xE48B0;
 	int playing : "bhd.exe", 0x98A0B0, 0x04; /* For start, reset and final split */
 	int vidplaying : "bhd.exe", 0x9E4464, 0x5CBAC; /* For final split accuracy */
