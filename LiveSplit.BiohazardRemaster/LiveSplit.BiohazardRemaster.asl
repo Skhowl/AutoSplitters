@@ -42,7 +42,7 @@ state("bhd")
 	int dslot1 : "bhd.exe", 0x97C9C0, 0x5088;
 	int dslot2 : "bhd.exe", 0x97C9C0, 0x508C;
 	int area : "bhd.exe", 0x97C9C0, 0xE4750;
-	int roomid : "bhd.exe", 0x97C9C0, 0xE4754;
+	int room : "bhd.exe", 0x97C9C0, 0xE48AC;
 	int camera : "bhd.exe", 0x97C9C0, 0xE48B0;
 	int playing : "bhd.exe", 0x98A0B0, 0x04; /* For start, reset and final split */
 	int vidplaying : "bhd.exe", 0x9E4464, 0x5CBAC; /* For final split accuracy */
@@ -177,8 +177,8 @@ startup
 	settings.Add("item116", false, "116: Lure without a hook");
 	settings.Add("item117", false, "117: Fishhook");
 	settings.Add("item118", false, "118: Lure of a Bee");
-	// settings.Add("item119", false, "119: X-Ray of CLARK");
-	// settings.Add("item120", false, "120: X-Ray of GAIL");
+	settings.Add("item119", false, "119: X-Ray of CLARK");
+	settings.Add("item120", false, "120: X-Ray of GAIL");
 	// settings.Add("item121", false, "121: Battery Pack");
 	settings.Add("item122", false, "122: Shaft");
 	settings.Add("item123", false, "123: Cylinder");
@@ -253,60 +253,60 @@ startup
 
 	settings.Add("EventSplit", true, "Auto-split on special events. (ONLY TESTED WITH CHRIS)");
 	settings.CurrentDefaultParent = "EventSplit";
-	settings.Add("RebeccaA", false, "Rebecca Chambers A (Pillar Room)");
-	settings.SetToolTip("RebeccaA", "She is trying to treat the wounded Richard.");
-	settings.Add("RebeccaB", false, "Rebecca Chambers B (Pillar Room)");
-	settings.SetToolTip("RebeccaB", "Chris arrived with the serum.");
-	settings.Add("Grimson", false, "Crimson Head Prototype 1 (Crypt)");
-	settings.SetToolTip("Grimson", "After you've placed all mask's into their respective places on the wall next to the entrance, it emerges from the fallen coffin.");
-	settings.Add("TransceiverA", false, "Overhear Talk (Muddy Path)");
-	settings.SetToolTip("TransceiverA", "Overhear unknown talk with transceiver.");
-	settings.Add("CemeteryGate", false, "Cemetery Gate (Muddy Path)");
-	settings.SetToolTip("CemeteryGate", "After you solved the red and blue signpost puzzle.");
-	settings.Add("LisaA", false, "Lisa Trevor A (Cabin)");
-	settings.SetToolTip("LisaA", "Lisa knocks you unconscious.");
-	settings.Add("TransceiverB", false, "Brad Vickers A (Main Garden)");
-	settings.SetToolTip("TransceiverB", "Brad tries an answer from S.T.A.R.S. Alpha or Bravo Team to get through the transceiver.");
-	settings.Add("Richard", false, "Richard Aiken (Aqua Ring Walkway)");
-	settings.SetToolTip("Richard", "If you saved his life in the mansion earlier on, he will be standing on the metal walkway opposite you when you enter the room.");
-	settings.Add("Plant42", false, "Plant 42 (Plant 42 Room)");
-	settings.SetToolTip("Plant42", "Plant 42 is attacking you.");
-	settings.Add("WeskerA", false, "Albert Wesker (Central Corridor)");
-	settings.SetToolTip("WeskerA", "Meeting with Wesker after acquiring the Helmet Key.");
-	settings.Add("TransceiverC", false, "Brad Vickers B (Zigzag Path)");
-	settings.SetToolTip("TransceiverC", "Brad tries a second answer from S.T.A.R.S. Team to get through the transceiver.");
-	settings.Add("ElevatorA", false, "Mansion Elevator (Kitchen, Elevator Corridor)");
-	settings.SetToolTip("ElevatorA", "If you take the elevator.");
-	settings.Add("Yawn", false, "Yawn (Library)");
-	settings.SetToolTip("Yawn", "Yawn shows up and is ready to fight.");
-	settings.Add("YawnKilled", false, "Yawn Killed (Library)");
-	settings.SetToolTip("YawnKilled", "Yawn get's killed in Library for Last Book Vol. 2.");
-	settings.Add("BatteryPlaced", false, "Battery Placed (Falls Area)");
-	settings.SetToolTip("BatteryPlaced", "Used to power the elevator in the Falls Area of the Courtyard, enabling you to access the area under the waterfall once the water flow has been stopped.");
-	settings.Add("WaterPool", false, "Replenish Water (Water Pool)");
-	settings.SetToolTip("WaterPool", "After you have used Square Crank to fill the water pool.");
-	settings.Add("Enrico", false, "Enrico Marini (Enrico Room)");
-	settings.SetToolTip("Enrico", "Sitting on the floor at the end of the passage.");
-	settings.Add("BlackTiger", false, "Black Tiger (Spider Room)");
-	settings.SetToolTip("BlackTiger", "Black Tiger is showing up.");
-	settings.Add("Boulder", false, "Boulder (Boulder Passage 2)");
-	settings.SetToolTip("Boulder", "Hexagon Crank was used 3 Times in a row.");
-	settings.Add("Create", false, "Wooden Box (Underground Storage Room)");
-	settings.SetToolTip("Create", "Wooden Box goes on the cable car");
-	settings.Add("RebeccaC", false, "Rebecca Chambers C (Courtyard Study)");
-	settings.SetToolTip("RebeccaC", "If while exploring the Courtyard Study you hear her scream, you will find her in Small Library.");
-	settings.Add("WeskerB", false, "Wesker attack Lisa (Altar B2)");
-	settings.SetToolTip("WeskerB", "Wesker attacking Lisa.");
-	settings.Add("LisaB", false, "Lisa Trevor B (Altar B2)");
-	settings.SetToolTip("LisaB", "After Lisa is jumping down the pit and you entering the hall way.");
-	settings.Add("Terminal", false, "Terminal (Operating Room)");
-	settings.SetToolTip("Terminal", "When you access Terminal.");
-	settings.Add("PowerA", false, "Fuel Supply Capsule placed (Power Maze A)");
-	settings.SetToolTip("PowerA", "When you placed the full Fuel Supply Capsule and the light is turning green.");
-	settings.Add("PowerB", false, "Power On (Power Control Room)");
-	settings.SetToolTip("PowerB", "When the power has turned on.");
-	settings.Add("Tyrant", false, "Tyrant attacks Wesker (Main Laboratory)");
-	settings.SetToolTip("Tyrant", "Tyrant attacks Wesker.");
+	settings.Add("ev21304", false, "Rebecca Chambers A (Pillar Room)");
+	settings.SetToolTip("ev21304", "She is trying to treat the wounded Richard.");
+	settings.Add("ev21311", false, "Rebecca Chambers B (Pillar Room)");
+	settings.SetToolTip("ev21311", "Chris arrived with the serum.");
+	settings.Add("ev11121", false, "Crimson Head Prototype 1 (Crypt)");
+	settings.SetToolTip("ev11121", "After you've placed all mask's into their respective places on the wall next to the entrance, it emerges from the fallen coffin.");
+	settings.Add("ev31714", false, "Overhear Talk (Muddy Path)");
+	settings.SetToolTip("ev31714", "Overhear unknown talk with transceiver.");
+	settings.Add("ev31707", false, "Cemetery Gate (Muddy Path)");
+	settings.SetToolTip("ev31707", "After you solved the red and blue signpost puzzle.");
+	settings.Add("ev32018", false, "Lisa Trevor A (Cabin)");
+	settings.SetToolTip("ev32018", "Lisa knocks you unconscious.");
+	settings.Add("ev30009", false, "Brad Vickers A (Main Garden)");
+	settings.SetToolTip("ev30009", "Brad tries an answer from S.T.A.R.S. Alpha or Bravo Team to get through the transceiver.");
+	settings.Add("ev41422", false, "Richard Aiken (Aqua Ring Walkway)");
+	settings.SetToolTip("ev41422", "If you saved his life in the mansion earlier on, he will be standing on the metal walkway opposite you when you enter the room.");
+	settings.Add("ev41218", false, "Plant 42 (Plant 42 Room)");
+	settings.SetToolTip("ev41218", "Plant 42 is attacking you.");
+	settings.Add("ev40509", false, "Albert Wesker (Central Corridor)");
+	settings.SetToolTip("ev40509", "Meeting with Wesker after acquiring the Helmet Key.");
+	settings.Add("ev30408", false, "Brad Vickers B (Zigzag Path)");
+	settings.SetToolTip("ev30408", "Brad tries a second answer from S.T.A.R.S. Team to get through the transceiver.");
+	settings.Add("ev20000", false, "Mansion Elevator (Kitchen, Elevator Corridor)");
+	settings.SetToolTip("ev20000", "If you take the elevator.");
+	settings.Add("ev22205", false, "Yawn (Library)");
+	settings.SetToolTip("ev22205", "Yawn shows up and is ready to fight.");
+	settings.Add("ev22214", false, "Yawn Killed (Library)");
+	settings.SetToolTip("ev22214", "Yawn get's killed in Library for Last Book Vol. 2.");
+	settings.Add("ev30208", false, "Battery Placed (Falls Area)");
+	settings.SetToolTip("ev30208", "Used to power the elevator in the Falls Area of the Courtyard, enabling you to access the area under the waterfall once the water flow has been stopped.");
+	settings.Add("ev30110", false, "Replenish Water (Water Pool)");
+	settings.SetToolTip("ev30110", "After you have used Square Crank to fill the water pool.");
+	settings.Add("ev31005", false, "Enrico Marini (Enrico Room)");
+	settings.SetToolTip("ev31005", "Sitting on the floor at the end of the passage.");
+	settings.Add("ev31203", false, "Black Tiger (Spider Room)");
+	settings.SetToolTip("ev31203", "Black Tiger is showing up.");
+	settings.Add("ev31508", false, "Boulder (Boulder Passage 2)");
+	settings.SetToolTip("ev31508", "Hexagon Crank was used 3 Times in a row.");
+	settings.Add("ev32406", false, "Wooden Box (Underground Storage Room)");
+	settings.SetToolTip("ev32406", "Wooden Box goes on the cable car");
+	settings.Add("ev12506", false, "Rebecca Chambers C (Courtyard Study)");
+	settings.SetToolTip("ev12506", "If while exploring the Courtyard Study you hear her scream, you will find her in Small Library.");
+	settings.Add("ev32122", false, "Wesker attack Lisa (Altar B2)");
+	settings.SetToolTip("ev32122", "Wesker attacking Lisa.");
+	settings.Add("ev32107", false, "Lisa Trevor B (Altar B2)");
+	settings.SetToolTip("ev32107", "After Lisa is jumping down the pit and you entering the hall way.");
+	settings.Add("ev50608", false, "Terminal (Operating Room)");
+	settings.SetToolTip("ev50608", "When you access Terminal.");
+	settings.Add("ev51510", false, "Fuel Supply Capsule placed (Power Maze A)");
+	settings.SetToolTip("ev51510", "When you placed the full Fuel Supply Capsule and the light is turning green.");
+	settings.Add("ev51707", false, "Power On (Power Control Room)");
+	settings.SetToolTip("ev51707", "When the power has turned on.");
+	settings.Add("ev51929", false, "Tyrant attacks Wesker (Main Laboratory)");
+	settings.SetToolTip("ev51929", "Tyrant attacks Wesker.");
 	settings.Add("End", true, "GAME IS DONE! (Landing Point)");
 	settings.SetToolTip("End", "FINAL SPLIT");
 }
@@ -314,11 +314,9 @@ startup
 init
 {
 	bool[] items = new bool[133];
-	bool[] events = new bool[27];
 
+	vars.Events = new HashSet<string>();
 	vars.GetItem = (Func<int, bool>)((id) => { return items[id]; });
-	vars.SetEvent = (Action<int>)((id) => { events[id] = true; });
-	vars.GetEvent = (Func<int, bool>)((id) => { return events[id]; });
 
 	vars.ItemSplit = (Func<int, bool>)((id) =>
 	{
@@ -340,9 +338,9 @@ init
 		{
 			items[i] = value;
 		}
-		for (int i = 0; i < 27; i++)
+		if (vars.Events.Count > 0)
 		{
-			events[i] = value;
+			vars.Events.Clear();
 		}
 	});
 
@@ -379,9 +377,8 @@ update
 
 split
 {
-	if (current.roomid != old.roomid)
+	if (current.room != old.room)
 	{
-		// vars.DebugMessage("Room: "+current.roomid+" - PrevRoom: "+old.roomid);
 		return settings["DoorSplit"];
 	}
 
@@ -391,260 +388,92 @@ split
 		return settings["End"];
 	}
 
-	if (current.camera != old.camera)
+	ushort SceneID = (ushort)(current.area*10000+current.room*100+current.camera);
+	// vars.DebugMessage("Area: "+current.area+", Room: "+current.room+", Camera: "+current.camera+", Scene: "+SceneID+" (0x"+SceneID.ToString("X4")+")");
+	switch (SceneID)
 	{
-		ushort SceneID = (ushort)(current.area*10000+current.roomid*100+current.camera);
-		// vars.DebugMessage("Area: "+current.area+", Room: "+current.roomid+", Camera: "+current.camera+", Scene: "+SceneID+" (0x"+SceneID.ToString("X4")+")");
-		switch (SceneID)
-		{
-			case 21304: /* Without Serum */
-				if (vars.GetEvent(0) == false && vars.GetItem(78) == false)
-				{
-					vars.SetEvent(0);
-					return settings["RebeccaA"];
-				}
-				break;
-			case 21311: /* With Serum */
-				if (vars.GetEvent(1) == false && vars.GetItem(78) == true)
-				{
-					vars.SetEvent(1);
-					return settings["RebeccaB"];
-				}
-				break;
-			case 11121:
-				if (vars.GetEvent(2) == false)
-				{
-					vars.SetEvent(2);
-					return settings["Grimson"];
-				}
-				break;
-			case 31714:
-				if (vars.GetEvent(3) == false)
-				{
-					vars.SetEvent(3);
-					return settings["TransceiverA"];
-				}
-				break;
-			case 31707:
-				if (vars.GetEvent(4) == false)
-				{
-					vars.SetEvent(4);
-					return settings["CemeteryGate"];
-				}
-				break;
-			case 32018:
-				if (vars.GetEvent(5) == false)
-				{
-					vars.SetEvent(5);
-					return settings["LisaA"];
-				}
-				break;
-			case 30009:
-				if (vars.GetEvent(6) == false)
-				{
-					vars.SetEvent(6);
-					return settings["TransceiverB"];
-				}
-				break;
-			case 41422:
-				if (vars.GetEvent(7) == false)
-				{
-					vars.SetEvent(7);
-					return settings["Richard"];
-				}
-				break;
-			case 41218:
-				if (vars.GetEvent(8) == false)
-				{
-					vars.SetEvent(8);
-					return settings["Plant42"];
-				}
-				break;
-			case 40509:
-				if (vars.GetEvent(9) == false)
-				{
-					vars.SetEvent(9);
-					return settings["WeskerA"];
-				}
-				break;
-			case 30408:
-				if (vars.GetEvent(10) == false)
-				{
-					vars.SetEvent(10);
-					return settings["TransceiverC"];
-				}
-				break;
-			case 20000:
-				if (vars.GetEvent(11) == false)
-				{
-					vars.SetEvent(11);
-					return settings["ElevatorA"];
-				}
-				break;
-			case 22205:
-				if (vars.GetEvent(12) == false)
-				{
-					vars.SetEvent(12);
-					return settings["Yawn"];
-				}
-				break;
-			case 22214:
-				if (vars.GetEvent(13) == false)
-				{
-					vars.SetEvent(13);
-					return settings["YawnKilled"];
-				}
-				break;
-			case 30208:
-				if (vars.GetEvent(14) == false && vars.GetItem(67) == true)
-				{
-					vars.SetEvent(14);
-					return settings["BatteryPlaced"];
-				}
-				break;
-			case 30110:
-				if (vars.GetEvent(15) == false && old.camera == 7)
-				{
-					vars.SetEvent(15);
-					return settings["WaterPool"];
-				}
-				break;
-			case 31005:
-				if (vars.GetEvent(16) == false)
-				{
-					vars.SetEvent(16);
-					return settings["Enrico"];
-				}
-				break;
-			case 31203:
-				if (vars.GetEvent(17) == false)
-				{
-					vars.SetEvent(17);
-					return settings["BlackTiger"];
-				}
-				break;
-			case 31508:
-				if (vars.GetEvent(18) == false)
-				{
-					vars.SetEvent(18);
-					return settings["Boulder"];
-				}
-				break;
-			case 32406:
-				if (vars.GetEvent(19) == false)
-				{
-					vars.SetEvent(19);
-					return settings["Create"];
-				}
-				break;
-			case 12506:
-				if (vars.GetEvent(20) == false)
-				{
-					vars.SetEvent(20);
-					return settings["RebeccaC"];
-				}
-				break;
-			case 32122:
-				if (vars.GetEvent(21) == false)
-				{
-					vars.SetEvent(21);
-					return settings["WeskerB"];
-				}
-				break;
-			case 32107:
-				if (vars.GetEvent(22) == false)
-				{
-					vars.SetEvent(22);
-					return settings["LisaB"];
-				}
-				break;
-			case 50608:
-				if (vars.GetEvent(23) == false)
-				{
-					vars.SetEvent(23);
-					return settings["Terminal"];
-				}
-				break;
-			case 51510:
-				if (vars.GetEvent(24) == false)
-				{
-					vars.SetEvent(24);
-					return settings["PowerA"];
-				}
-				break;
-			case 51707:
-				if (vars.GetEvent(25) == false)
-				{
-					vars.SetEvent(25);
-					return settings["PowerB"];
-				}
-				break;
-			case 51929:
-				if (vars.GetEvent(26) == false)
-				{
-					vars.SetEvent(26);
-					return settings["Tyrant"];
-				}
-				break;
-		}
+		case 21304: /* Without Serum */
+			if (!vars.Events.Contains("ev21304") && !vars.GetItem(78))
+			{
+				vars.Events.Add("ev21304");
+				return settings["ev21304"];
+			}
+			break;
+		case 21311: /* With Serum */
+			if (!vars.Events.Contains("ev21311") && vars.GetItem(78))
+			{
+				vars.Events.Add("ev21311");
+				return settings["ev21311"];
+			}
+			break;
+		case 30110:
+			if (!vars.Events.Contains("ev30110") && old.camera == 7)
+			{
+				vars.Events.Add("ev30110");
+				return settings["ev30110"];
+			}
+			break;
+		case 30208: /* With Battery */
+			if (!vars.Events.Contains("ev30208") && vars.GetItem(67))
+			{
+				vars.Events.Add("ev30208");
+				return settings["ev30208"];
+			}
+			break;
+		default:
+			if (!vars.Events.Contains("ev"+SceneID))
+			{
+				vars.Events.Add("ev"+SceneID);
+				return settings.ContainsKey("ev"+SceneID) && settings["ev"+SceneID];
+			}
+			break;
 	}
 
 	if (current.dslot1 > old.dslot1)
 	{
-		// vars.DebugMessage("DSlot 1: d1_"+current.area+"_"+current.roomid);
-		return settings["d1_"+current.area+"_"+current.roomid];
+		return settings["d1_"+current.area+"_"+current.room];
 	}
 	if (current.dslot2 > old.dslot2)
 	{
-		// vars.DebugMessage("DSlot 2: d2_"+current.area+"_"+current.roomid);
-		return settings["d2_"+current.area+"_"+current.roomid];
+		return settings["d2_"+current.area+"_"+current.room];
 	}
 
 	if (current.slot1 != old.slot1 && current.slot1 != old.slot2)
 	{
-		// vars.DebugMessage("Slot 1: "+current.slot1);
 		return vars.ItemSplit(current.slot1);
 	}
 	if (current.slot2 != old.slot2 && current.slot2 != old.slot3)
 	{
-		// vars.DebugMessage("Slot 2: "+current.slot2);
 		return vars.ItemSplit(current.slot2);
 	}
 	if (current.slot3 != old.slot3 && current.slot3 != old.slot4)
 	{
-		// vars.DebugMessage("Slot 3: "+current.slot3);
 		return vars.ItemSplit(current.slot3);
 	}
 	if (current.slot4 != old.slot4 && current.slot4 != old.slot5)
 	{
-		// vars.DebugMessage("Slot 4: "+current.slot4);
 		return vars.ItemSplit(current.slot4);
 	}
 	if (current.slot5 != old.slot5 && current.slot5 != old.slot6)
 	{
-		// vars.DebugMessage("Slot 5: "+current.slot5);
 		return vars.ItemSplit(current.slot5);
 	}
 	if (current.character == 1) /* JILL */
 	{
 		if (current.slot6 != old.slot6 && current.slot6 != old.slot7)
 		{
-			// vars.DebugMessage("Slot 6: "+current.slot6);
 			return vars.ItemSplit(current.slot6);
 		}
 		if (current.slot7 != old.slot7 && current.slot7 != old.slot8)
 		{
-			// vars.DebugMessage("Slot 7: "+current.slot7);
 			return vars.ItemSplit(current.slot7);
 		}
 		if (current.slot8 != old.slot8)
 		{
-			// vars.DebugMessage("Slot 8: "+current.slot8);
 			return vars.ItemSplit(current.slot8);
 		}
 		if (current.slot9 != old.slot9)
 		{
-			// vars.DebugMessage("Slot 9: "+current.slot9);
 			return vars.ItemSplit(current.slot9);
 		}
 	}
@@ -652,7 +481,6 @@ split
 	{
 		if (current.slot6 != old.slot6)
 		{
-			// vars.DebugMessage("Slot 6: "+current.slot6);
 			return vars.ItemSplit(current.slot6);
 		}
 	}
