@@ -434,33 +434,33 @@ split
 		return settings["d2_"+current.area+"_"+current.room];
 	}
 
-	if (current.slot1 != old.slot1 && current.slot1 != old.slot2)
-	{
-		return vars.ItemSplit(current.slot1);
-	}
-	if (current.slot2 != old.slot2 && current.slot2 != old.slot3)
-	{
-		return vars.ItemSplit(current.slot2);
-	}
-	if (current.slot3 != old.slot3 && current.slot3 != old.slot4)
-	{
-		return vars.ItemSplit(current.slot3);
-	}
-	if (current.slot4 != old.slot4 && current.slot4 != old.slot5)
-	{
-		return vars.ItemSplit(current.slot4);
-	}
-	if (current.slot5 != old.slot5 && current.slot5 != old.slot6)
-	{
-		return vars.ItemSplit(current.slot5);
-	}
 	if (current.character == 1) /* JILL */
 	{
-		if (current.slot6 != old.slot6 && current.slot6 != old.slot7)
+		if (current.slot1 != old.slot1)
+		{
+			return vars.ItemSplit(current.slot1);
+		}
+		if (current.slot2 != old.slot2)
+		{
+			return vars.ItemSplit(current.slot2);
+		}
+		if (current.slot3 != old.slot3)
+		{
+			return vars.ItemSplit(current.slot3);
+		}
+		if (current.slot4 != old.slot4)
+		{
+			return vars.ItemSplit(current.slot4);
+		}
+		if (current.slot5 != old.slot5)
+		{
+			return vars.ItemSplit(current.slot5);
+		}
+		if (current.slot6 != old.slot6)
 		{
 			return vars.ItemSplit(current.slot6);
 		}
-		if (current.slot7 != old.slot7 && current.slot7 != old.slot8)
+		if (current.slot7 != old.slot7)
 		{
 			return vars.ItemSplit(current.slot7);
 		}
@@ -475,6 +475,26 @@ split
 	}
 	else /* CHRIS */
 	{
+		if (current.slot1 != old.slot1 && current.slot1 != old.slot2)
+		{
+			return vars.ItemSplit(current.slot1);
+		}
+		if (current.slot2 != old.slot2 && current.slot2 != old.slot3)
+		{
+			return vars.ItemSplit(current.slot2);
+		}
+		if (current.slot3 != old.slot3 && current.slot3 != old.slot4)
+		{
+			return vars.ItemSplit(current.slot3);
+		}
+		if (current.slot4 != old.slot4 && current.slot4 != old.slot5)
+		{
+			return vars.ItemSplit(current.slot4);
+		}
+		if (current.slot5 != old.slot5 && current.slot5 != old.slot6)
+		{
+			return vars.ItemSplit(current.slot5);
+		}
 		if (current.slot6 != old.slot6)
 		{
 			return vars.ItemSplit(current.slot6);
