@@ -51,7 +51,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>57</ID>
-      <Description>"Camera"</Description>
+      <Description>"Camera Angle"</Description>
       <LastState Value="0" RealAddress="2D0D8CB0"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
@@ -62,7 +62,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>74</ID>
-      <Description>"Playing 1st"</Description>
+      <Description>"Playing"</Description>
       <LastState Value="0" RealAddress="02EE1464"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
@@ -73,7 +73,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>75</ID>
-      <Description>"Playing 2nd"</Description>
+      <Description>"Playing (alt. pointer)"</Description>
       <LastState Value="0" RealAddress="02EE1464"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
@@ -84,7 +84,7 @@
     </CheatEntry>
     <CheatEntry>
       <ID>81</ID>
-      <Description>"VideoPlaying"</Description>
+      <Description>"Video is Playing"</Description>
       <LastState Value="0" RealAddress="2C16C4CC"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
