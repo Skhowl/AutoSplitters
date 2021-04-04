@@ -388,32 +388,28 @@ split
 		return settings["End"];
 	}
 
+	/*	For a full documentary look at:
+		https://docs.google.com/spreadsheets/d/1tCN-INVKPmbCZTmgJvYW3zQOAaArVHfor1OXZDsn6EU
+	*/
 	ushort SceneID = (ushort)(current.area*10000+current.room*100+current.camera);
 	// vars.DebugMessage("Area: "+current.area+", Room: "+current.room+", Camera: "+current.camera+", Scene: "+SceneID+" (0x"+SceneID.ToString("X4")+")");
 	switch (SceneID)
 	{
-		case 21304: /* Without Serum */
-			if (!vars.Events.Contains("ev21304") && !vars.GetItem(78))
-			{
-				vars.Events.Add("ev21304");
-				return settings["ev21304"];
-			}
-			break;
-		case 21311: /* With Serum */
+		case 21311: /* Rebecca Chambers B (Pillar Room) */
 			if (!vars.Events.Contains("ev21311") && vars.GetItem(78))
 			{
 				vars.Events.Add("ev21311");
 				return settings["ev21311"];
 			}
 			break;
-		case 30110:
+		case 30110: /* Replenish Water (Water Pool) */
 			if (!vars.Events.Contains("ev30110") && old.camera == 7)
 			{
 				vars.Events.Add("ev30110");
 				return settings["ev30110"];
 			}
 			break;
-		case 30208: /* With Battery */
+		case 30208: /* Battery Placed (Falls Area) */
 			if (!vars.Events.Contains("ev30208") && vars.GetItem(67))
 			{
 				vars.Events.Add("ev30208");
@@ -421,10 +417,10 @@ split
 			}
 			break;
 		default:
-			if (!vars.Events.Contains("ev"+SceneID))
+			if (settings.ContainsKey("ev"+SceneID) && !vars.Events.Contains("ev"+SceneID))
 			{
 				vars.Events.Add("ev"+SceneID);
-				return settings.ContainsKey("ev"+SceneID) && settings["ev"+SceneID];
+				return settings["ev"+SceneID];
 			}
 			break;
 	}
