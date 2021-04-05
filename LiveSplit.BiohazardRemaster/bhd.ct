@@ -6,8 +6,9 @@
   </Forms>
   <CheatEntries>
     <CheatEntry>
-      <ID>61</ID>
+      <ID>2</ID>
       <Description>"Timer"</Description>
+      <LastState Value="0.0" RealAddress="2D178B4C"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>Float</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -16,8 +17,9 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>59</ID>
+      <ID>3</ID>
       <Description>"Character"</Description>
+      <LastState Value="0" RealAddress="2D099518"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -26,8 +28,9 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>84</ID>
+      <ID>4</ID>
       <Description>"Area ID"</Description>
+      <LastState Value="0" RealAddress="2D178B50"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -36,8 +39,9 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>83</ID>
+      <ID>5</ID>
       <Description>"Room ID"</Description>
+      <LastState Value="0" RealAddress="2D178B54"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -46,8 +50,9 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>85</ID>
+      <ID>6</ID>
       <Description>"Camera Angle"</Description>
+      <LastState Value="0" RealAddress="2D178B58"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -56,8 +61,9 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>57</ID>
+      <ID>7</ID>
       <Description>"Cutscene Angle"</Description>
+      <LastState Value="0" RealAddress="2D178CB0"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0097C9C0</Address>
@@ -66,8 +72,9 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>74</ID>
+      <ID>8</ID>
       <Description>"Playing"</Description>
+      <LastState Value="0" RealAddress="02FDF0F4"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0098A0B0</Address>
@@ -76,8 +83,9 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>75</ID>
+      <ID>9</ID>
       <Description>"Playing (alt. pointer)"</Description>
+      <LastState Value="0" RealAddress="02FDF0F4"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+0098A1CC</Address>
@@ -86,13 +94,36 @@
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>81</ID>
+      <ID>10</ID>
       <Description>"Video is Playing"</Description>
+      <LastState Value="0" RealAddress="2C20C4CC"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>"bhd.exe"+009E4464</Address>
       <Offsets>
         <Offset>5CBAC</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"*Real Area ID"</Description>
+      <LastState Value="0" RealAddress="2D1860F0"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"bhd.exe"+0097C9C0</Address>
+      <Offsets>
+        <Offset>F1CF0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"*Real Room ID"</Description>
+      <LastState Value="0" RealAddress="2D1860F4"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"bhd.exe"+0097C9C0</Address>
+      <Offsets>
+        <Offset>F1CF4</Offset>
       </Offsets>
     </CheatEntry>
   </CheatEntries>
