@@ -22,7 +22,7 @@ Pessimism
 Thank you to all the above people for helping me make this possible.
 -CursedToast/Nate
 
-Update to Version 4.0.1
+Update to Version 4.0
 -Skhowl
 */
 
