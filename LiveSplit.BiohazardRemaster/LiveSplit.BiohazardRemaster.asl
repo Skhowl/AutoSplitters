@@ -22,7 +22,7 @@ Pessimism
 Thank you to all the above people for helping me make this possible.
 -CursedToast/Nate
 
-Update to Version 4.0
+Update to Version 4.1 (4/8/2021)
 -Skhowl
 */
 
@@ -54,10 +54,23 @@ startup
 	vars.DebugMessage = (Action<string>)((message) => { print("[Debug] " + message); });
 
 	/* MENU */
-	settings.Add("DoorSplit", false, "Auto-split on all doors?");
+	settings.Add("DoorSplit", false, "Auto-split on all doors!");
 	settings.SetToolTip("DoorSplit", "Make sure you grab the right splits file either way!");
 
-	settings.Add("ItemSplit", true, "Auto-split on picking up items. (sort by item id)");
+	settings.Add("RoomSplit", true, "Auto-split on specific rooms. (Get ignored when door splits are enabled)");
+	settings.CurrentDefaultParent = "RoomSplit";
+	settings.Add("room20501", false, "Entering Armor Room");
+	settings.Add("room12306", false, "Entering Large Gallery");
+	settings.Add("room41300", false, "Entering Aqua Ring entrance");
+	settings.Add("room41200", false, "Entering Plant 42 Room");
+	settings.Add("room21203", false, "Entering Sliding Trap Room");
+	settings.Add("room20000", false, "Mansion Elevator (Kitchen 🡸/🡺 Elevator Corridor)");
+	settings.Add("room31200", false, "Entering Spider Room");
+	settings.Add("room52100", false, "Elevator to Laboratory B3 from B4");
+	settings.Add("room52101", false, "Elevator to Laboratory B4 from B3");
+	settings.CurrentDefaultParent = null;
+
+	settings.Add("ItemSplit", true, "Auto-split on picking up items. (Sort by item id)");
 	settings.CurrentDefaultParent = "ItemSplit";
 	settings.Add("item1", false, "1: Survival Knife (Jill)");
 	settings.Add("item2", false, "2: Survival Knife (Chris)");
@@ -135,7 +148,7 @@ startup
 	settings.Add("item74", false, "74: Yellow Gemstone");
 	settings.Add("item75", false, "75: Broken Shotgun");
 	settings.Add("item76", false, "76: Herbicide (Chemical)");
-	settings.Add("item77", false, "77: Lighter");
+	settings.Add("item77", false, "77: Lighter (Jill)");
 	settings.Add("item78", false, "78: Serum");
 	// settings.Add("item79", false, "79: Transceiver");
 	// settings.Add("item80", false, "80: Empty Bottle");
@@ -183,7 +196,7 @@ startup
 	settings.Add("item122", false, "122: Shaft");
 	settings.Add("item123", false, "123: Cylinder");
 	settings.Add("item124", false, "124: Cylinder Shaft");
-	settings.Add("item125", false, "125: Mask without eyes, nose, or mouth");
+	settings.Add("item125", false, "125: Mask without eyes, nose and mouth");
 	settings.Add("item126", false, "126: Mask without eyes");
 	settings.Add("item127", false, "127: Mask without a nose");
 	settings.Add("item128", false, "128: Mask without a mouth");
@@ -251,64 +264,92 @@ startup
 	settings.SetToolTip("d2_5_16", "On the floor in the north west corner of the maze.");
 	settings.CurrentDefaultParent = null;
 
-	settings.Add("EventSplit", true, "Auto-split on special events. (ONLY TESTED WITH CHRIS)");
+	settings.Add("EventSplit", true, "Auto-split on certain events.");
 	settings.CurrentDefaultParent = "EventSplit";
-	settings.Add("ev21304", false, "Rebecca Chambers A (Pillar Room)");
-	settings.SetToolTip("ev21304", "She is trying to treat the wounded Richard.");
-	settings.Add("ev21311", false, "Rebecca Chambers B (Pillar Room)");
-	settings.SetToolTip("ev21311", "Chris arrived with the serum.");
-	settings.Add("ev11121", false, "Crimson Head Prototype 1 (Crypt)");
-	settings.SetToolTip("ev11121", "After you've placed all mask's into their respective places on the wall next to the entrance, it emerges from the fallen coffin.");
-	settings.Add("ev31714", false, "Overhear Talk (Muddy Path)");
-	settings.SetToolTip("ev31714", "Overhear unknown talk with transceiver.");
-	settings.Add("ev31707", false, "Cemetery Gate (Muddy Path)");
-	settings.SetToolTip("ev31707", "After you solved the red and blue signpost puzzle.");
-	settings.Add("ev32018", false, "Lisa Trevor A (Cabin)");
-	settings.SetToolTip("ev32018", "Lisa knocks you unconscious.");
-	settings.Add("ev30009", false, "Brad Vickers A (Main Garden)");
-	settings.SetToolTip("ev30009", "Brad tries an answer from S.T.A.R.S. Alpha or Bravo Team to get through the transceiver.");
-	settings.Add("ev41422", false, "Richard Aiken (Aqua Ring Walkway)");
-	settings.SetToolTip("ev41422", "If you saved his life in the mansion earlier on, he will be standing on the metal walkway opposite you when you enter the room.");
-	settings.Add("ev41218", false, "Plant 42 (Plant 42 Room)");
-	settings.SetToolTip("ev41218", "Plant 42 is attacking you.");
-	settings.Add("ev40509", false, "Albert Wesker (Central Corridor)");
-	settings.SetToolTip("ev40509", "Meeting with Wesker after acquiring the Helmet Key.");
-	settings.Add("ev30408", false, "Brad Vickers B (Zigzag Path)");
-	settings.SetToolTip("ev30408", "Brad tries a second answer from S.T.A.R.S. Team to get through the transceiver.");
-	settings.Add("ev20000", false, "Mansion Elevator (Kitchen, Elevator Corridor)");
-	settings.SetToolTip("ev20000", "If you take the elevator.");
-	settings.Add("ev22205", false, "Yawn (Library)");
-	settings.SetToolTip("ev22205", "Yawn shows up and is ready to fight.");
-	settings.Add("ev22214", false, "Yawn Killed (Library)");
-	settings.SetToolTip("ev22214", "Yawn get's killed in Library for Last Book Vol. 2.");
-	settings.Add("ev30208", false, "Battery Placed (Falls Area)");
-	settings.SetToolTip("ev30208", "Used to power the elevator in the Falls Area of the Courtyard, enabling you to access the area under the waterfall once the water flow has been stopped.");
-	settings.Add("ev30110", false, "Replenish Water (Water Pool)");
-	settings.SetToolTip("ev30110", "After you have used Square Crank to fill the water pool.");
-	settings.Add("ev31005", false, "Enrico Marini (Enrico Room)");
-	settings.SetToolTip("ev31005", "Sitting on the floor at the end of the passage.");
-	settings.Add("ev31203", false, "Black Tiger (Spider Room)");
-	settings.SetToolTip("ev31203", "Black Tiger is showing up.");
-	settings.Add("ev31508", false, "Boulder (Boulder Passage 2)");
-	settings.SetToolTip("ev31508", "Hexagon Crank was used 3 Times in a row.");
-	settings.Add("ev32406", false, "Wooden Box (Underground Storage Room)");
-	settings.SetToolTip("ev32406", "Wooden Box goes on the cable car");
-	settings.Add("ev12506", false, "Rebecca Chambers C (Courtyard Study)");
-	settings.SetToolTip("ev12506", "If while exploring the Courtyard Study you hear her scream, you will find her in Small Library.");
-	settings.Add("ev32122", false, "Wesker attack Lisa (Altar B2)");
-	settings.SetToolTip("ev32122", "Wesker attacking Lisa.");
-	settings.Add("ev32107", false, "Lisa Trevor B (Altar B2)");
-	settings.SetToolTip("ev32107", "After Lisa is jumping down the pit and you entering the hall way.");
-	settings.Add("ev50608", false, "Terminal (Operating Room)");
-	settings.SetToolTip("ev50608", "When you access Terminal.");
-	settings.Add("ev51510", false, "Fuel Supply Capsule placed (Power Maze A)");
-	settings.SetToolTip("ev51510", "When you placed the full Fuel Supply Capsule and the light is turning green.");
-	settings.Add("ev51707", false, "Power On (Power Control Room)");
-	settings.SetToolTip("ev51707", "When the power has turned on.");
-	settings.Add("ev51929", false, "Tyrant attacks Wesker (Main Laboratory)");
-	settings.SetToolTip("ev51929", "Tyrant attacks Wesker.");
-	settings.Add("End", true, "GAME IS DONE! (Landing Point)");
-	settings.SetToolTip("End", "FINAL SPLIT");
+	settings.Add("video", true, "Video Events");
+	settings.Add("video103", false, "Zombie eating Kenneth (Tea Room)", "video");
+	settings.Add("video301", false, "Drain the water (Water Pool)", "video");
+	settings.Add("video414", false, "Shark speeding (Jill, Aqua Ring Walkway)", "video");
+	settings.Add("video110", false, "A Hunter is coming for you (Dark Corridor)", "video");
+	settings.Add("video305", false, "Fountain releasing (Fountain)", "video");
+	settings.Add("video519", false, "Tyrant shown in cryogenic tube (Main Laboratory)", "video");
+	settings.Add("shared", true, "Shared Events");
+	settings.Add("event10509", false, "Clock puzzle (Dining Room)", "shared");
+	settings.Add("event21605", false, "Yawn A (Attic)", "shared");
+	settings.SetToolTip("event21605", "Yawn shows up and is ready to fight.");
+	settings.Add("event11116", false, "Mask without eyes placed (Crypt)", "shared");
+	settings.Add("event11117", false, "Mask without eyes, nose and mouth placed (Crypt)", "shared");
+	settings.Add("event11118", false, "Mask without a nose placed (Crypt)", "shared");
+	settings.Add("event11119", false, "Mask without a mouth placed (Crypt)", "shared");
+	settings.Add("event11121", false, "Crimson Head awakens (Crypt)", "shared");
+	settings.SetToolTip("event11121", "After you've placed all mask's into their respective places on the wall next to the entrance, it emerges from the fallen coffin.");
+	settings.Add("event31714", false, "Overhear transmission (Muddy Path)", "shared");
+	settings.SetToolTip("event31714", "Overhear unknown transmission with transceiver.");
+	settings.Add("event31707", false, "Cemetery gate (Muddy Path)", "shared");
+	settings.SetToolTip("event31707", "After you solved the red and blue signpost puzzle.");
+	settings.Add("event32018", false, "Lisa Trevor A (Cabin)", "shared");
+	settings.SetToolTip("event32018", "Lisa knocks you unconscious.");
+	settings.Add("event41729", false, "Aqua Park drained (Control Room)", "shared");
+	settings.Add("event41811", false, "Neptune drops down Gallery Key (Aqua Ring Water Tank)", "shared");
+	settings.Add("event40507", false, "Killing bee hive (Central Corridor)", "shared");
+	settings.Add("event40509", false, "Albert Wesker (Central Corridor)", "shared");
+	settings.SetToolTip("event40509", "Meeting with Wesker after acquiring the Helmet Key.");
+	settings.Add("event22205", false, "Yawn B (Library)", "shared");
+	settings.SetToolTip("event22205", "Yawn shows up a second time and is ready to fight.");
+	settings.Add("event22214", false, "Yawn dying (Library)", "shared");
+	settings.SetToolTip("event22214", "Yawn get's killed in Library for Last Book Vol. 2.");
+	settings.Add("event30208", false, "Battery placed (Falls Area)", "shared");
+	settings.SetToolTip("event30208", "Used to power the elevator in the Falls Area of the Courtyard, enabling you to access the area under the waterfall once the water flow has been stopped.");
+	settings.Add("event30110", false, "Replenish water (Water Pool)", "shared");
+	settings.SetToolTip("event30110", "After you have used Square Crank to fill the water pool.");
+	settings.Add("event31508", false, "Boulder rolling (Boulder Passage 2)", "shared");
+	settings.SetToolTip("event31508", "Hexagon Crank was used 3 Times in a row.");
+	settings.Add("event32406", false, "Wooden box (Underground Storage Room)", "shared");
+	settings.SetToolTip("event32406", "Wooden Box goes on the cable car");
+	settings.Add("event32315", false, "Activating switch (Winding Underground Passage)", "shared");
+	settings.Add("event32107", false, "Lisa Trevor B (Altar B2)", "shared");
+	settings.SetToolTip("event32107", "After Lisa is jumping down the pit and you entering the hall way.");
+	settings.Add("event50608", false, "*Terminal* (Operating Room)", "shared");
+	settings.SetToolTip("event50608", "When you access Terminal.");
+	settings.Add("event50712", false, "Insert Disc... A (Morgue)", "shared");
+	settings.Add("event51005", false, "Insert Disc... B (X-Ray Room B)", "shared");
+	settings.Add("event51510", false, "Fuel Supply Capsule placed (Power Maze A)", "shared");
+	settings.SetToolTip("event51510", "When you placed the full Fuel Supply Capsule and the light is turning green.");
+	settings.Add("event51606", false, "Insert Disc... C (Power Maze B)", "shared");
+	settings.Add("event51707", false, "Power on (Power Control Room)", "shared");
+	settings.SetToolTip("event51707", "When the power has turned on.");
+	settings.Add("chris", true, "Chris Redfield");
+	settings.Add("event21304", false, "Rebecca Chambers A (Pillar Room)", "chris");
+	settings.SetToolTip("event21304", "She is trying to treat the wounded Richard.");
+	settings.Add("event21311", false, "Rebecca Chambers B (Pillar Room)", "chris");
+	settings.SetToolTip("event21311", "Chris arrived with the serum.");
+	settings.Add("event30009", false, "Brad Vickers A (Main Garden)", "chris");
+	settings.SetToolTip("event30009", "Brad tries an answer from S.T.A.R.S. Alpha or Bravo Team to get through the transceiver.");
+	settings.Add("event41422", false, "Richard Aiken (Aqua Ring Walkway)", "chris");
+	settings.SetToolTip("event41422", "If you saved his life in the mansion earlier on, he will be standing on the metal walkway opposite you when you enter the room.");
+	settings.Add("event30408", false, "Brad Vickers B (Zigzag Path)", "chris");
+	settings.SetToolTip("event30408", "Brad tries a second answer from S.T.A.R.S. Team to get through the transceiver.");
+	settings.Add("event31005", false, "Enrico Marini (Enrico Room)", "chris");
+	settings.SetToolTip("event31005", "Sitting on the floor at the end of the passage.");
+	settings.Add("event31114", false, "Avoiding boulder by a side jump (Boulder Passage 1)", "chris");
+	settings.Add("event12506", false, "Rebecca Chambers C (Courtyard Study)", "chris");
+	settings.SetToolTip("event12506", "If while exploring the Courtyard Study you hear her scream, you will find her in Small Library.");
+	settings.Add("event20607", false, "Rebecca Chambers D (Small Library)", "chris");
+	settings.Add("event32122", false, "Wesker attacks Lisa (Altar B2)", "chris");
+	settings.Add("event51804", false, "Rescuing Jill (Cell)", "chris");
+	settings.Add("jill", true, "Jill Valentine");
+	settings.Add("event21322", false, "Richard Aiken A (Pillar Room)", "jill");
+	settings.Add("event21329", false, "Richard Aiken B (Pillar Room)", "jill");
+	settings.Add("event30012", false, "Brad Vickers A (Main Garden)", "jill");
+	settings.SetToolTip("event30012", "Brad tries an answer from S.T.A.R.S. Alpha or Bravo Team to get through the transceiver.");
+	settings.Add("event40514", false, "Barry arguing (Central Corridor)", "jill");
+	settings.Add("event30410", false, "Brad Vickers B (Zigzag Path)", "jill");
+	settings.SetToolTip("event30410", "Brad tries a second answer from S.T.A.R.S. Team to get through the transceiver.");
+	settings.Add("event31014", false, "Enrico Marini (Enrico Room)", "jill");
+	settings.SetToolTip("event31014", "Sitting on the floor at the end of the passage.");
+	settings.Add("event31117", false, "Avoiding boulder by a side jump (Boulder Passage 1)", "jill");
+	settings.Add("event32143", false, "Barry checking Altar (Altar B2)", "jill");
+	settings.Add("event51808", false, "Rescuing Chris (Cell)", "jill");
 }
 
 init
@@ -377,61 +418,83 @@ update
 
 split
 {
-	if (current.room != old.room)
+	/* ROOMS */
+	int RoomID = current.room;
+	if (RoomID != old.room)
 	{
 		return settings["DoorSplit"];
 	}
 
-	// if (current.playing == 0x01B0 && old.playing == 0x0550)
-	if (current.playing == 0x01B0 && current.vidplaying != 0)
+	/* VIDEOS */
+	int AreaID = current.area;
+	if (current.vidplaying != 0)
 	{
-		return settings["End"];
+		if (current.playing == 0x01B0 && !vars.Events.Contains("Ended"))
+		{
+			vars.Events.Add("Ended");
+			return true;
+		}
+		int VideoID = (int)(AreaID*100+RoomID);
+		if (settings.ContainsKey("video"+VideoID) && !vars.Events.Contains("video"+VideoID))
+		{
+			vars.Events.Add("video"+VideoID);
+			return settings["video"+VideoID];
+		}
 	}
 
 	/*	For a full documentary look at:
 		https://docs.google.com/spreadsheets/d/1tCN-INVKPmbCZTmgJvYW3zQOAaArVHfor1OXZDsn6EU
 	*/
-	ushort SceneID = (ushort)(current.area*10000+current.room*100+current.camera);
+	ushort SceneID = (ushort)(AreaID*10000+RoomID*100+current.camera);
 	// vars.DebugMessage("Area: "+current.area+", Room: "+current.room+", Camera: "+current.camera+", Scene: "+SceneID+" (0x"+SceneID.ToString("X4")+")");
+
+	/* SHARED EVENTS */
 	switch (SceneID)
 	{
 		case 21311: /* Rebecca Chambers B (Pillar Room) */
-			if (!vars.Events.Contains("ev21311") && vars.GetItem(78))
+			if (!vars.Events.Contains("event21311") && vars.GetItem(78))
 			{
-				vars.Events.Add("ev21311");
-				return settings["ev21311"];
+				vars.Events.Add("event21311");
+				return settings["event21311"];
+			}
+			break;
+		case 21329: /* Richard Aiken B (Pillar Room) */
+			if (!vars.Events.Contains("event21329") && vars.GetItem(78))
+			{
+				vars.Events.Add("event21329");
+				return settings["event21329"];
 			}
 			break;
 		case 30110: /* Replenish Water (Water Pool) */
-			if (!vars.Events.Contains("ev30110") && old.camera == 7)
+			if (!vars.Events.Contains("event30110") && old.camera == 7)
 			{
-				vars.Events.Add("ev30110");
-				return settings["ev30110"];
+				vars.Events.Add("event30110");
+				return settings["event30110"];
 			}
 			break;
-		case 30208: /* Battery Placed (Falls Area) */
-			if (!vars.Events.Contains("ev30208") && vars.GetItem(67))
+		/* Room Splits */
+		case 20501: /* Entering Armor Room */
+		case 12306: /* Entering Large Gallery */
+		case 41300: /* Entering Aqua Ring entrance */
+		case 41200: /* Entering Plant 42 Room */
+		case 21203: /* Entering Sliding Trap Room */
+		case 20000: /* Mansion Elevator (Kitchen 🡸/🡺 Elevator Corridor) */
+		case 31200: /* Entering Spider Room */
+		case 52100: /* Elevator to Laboratory B3 from B4 */
+		case 52101: /* Elevator to Laboratory B4 from B3 */
+			if (!settings["DoorSplit"] && !vars.Events.Contains("room"+SceneID))
 			{
-				vars.Events.Add("ev30208");
-				return settings["ev30208"];
+				vars.Events.Add("room"+SceneID);
+				return settings["room"+SceneID];
 			}
 			break;
 		default:
-			if (settings.ContainsKey("ev"+SceneID) && !vars.Events.Contains("ev"+SceneID))
+			if (settings.ContainsKey("event"+SceneID) && !vars.Events.Contains("event"+SceneID))
 			{
-				vars.Events.Add("ev"+SceneID);
-				return settings["ev"+SceneID];
+				vars.Events.Add("event"+SceneID);
+				return settings["event"+SceneID];
 			}
 			break;
-	}
-
-	if (current.dslot1 > old.dslot1)
-	{
-		return settings["d1_"+current.area+"_"+current.room];
-	}
-	if (current.dslot2 > old.dslot2)
-	{
-		return settings["d2_"+current.area+"_"+current.room];
 	}
 
 	if (current.character == 1) /* JILL */
@@ -499,6 +562,15 @@ split
 		{
 			return vars.ItemSplit(current.slot6);
 		}
+	}
+
+	if (current.dslot1 > old.dslot1)
+	{
+		return settings["d1_"+current.area+"_"+current.room];
+	}
+	if (current.dslot2 > old.dslot2)
+	{
+		return settings["d2_"+current.area+"_"+current.room];
 	}
 
 	return false;
