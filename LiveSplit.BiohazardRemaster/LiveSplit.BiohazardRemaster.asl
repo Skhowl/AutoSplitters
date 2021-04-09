@@ -57,7 +57,7 @@ startup
 	settings.Add("DoorSplit", false, "Auto-split on all doors!");
 	settings.SetToolTip("DoorSplit", "Make sure you grab the right splits file either way!");
 
-	settings.Add("RoomSplit", true, "Auto-split on specific rooms. (Get ignored when door splits are enabled)");
+	settings.Add("RoomSplit", true, "Auto-split on specific rooms. (Ignored when 'all doors' are enabled)");
 	settings.CurrentDefaultParent = "RoomSplit";
 	settings.Add("room20501", false, "Entering Armor Room");
 	settings.Add("room12306", false, "Entering Large Gallery");
@@ -66,6 +66,8 @@ startup
 	settings.Add("room21203", false, "Entering Sliding Trap Room");
 	settings.Add("room20000", false, "Mansion Elevator (Kitchen 🡸/🡺 Elevator Corridor)");
 	settings.Add("room31200", false, "Entering Spider Room");
+	settings.Add("room31301", false, "Entering Straight Passage");
+	settings.Add("room30600", false, "Entering Underground Statue Room");
 	settings.Add("room52100", false, "Elevator to Laboratory B3 from B4");
 	settings.Add("room52101", false, "Elevator to Laboratory B4 from B3");
 	settings.CurrentDefaultParent = null;
@@ -445,8 +447,8 @@ split
 	/*	For a full documentary look at:
 		https://docs.google.com/spreadsheets/d/1tCN-INVKPmbCZTmgJvYW3zQOAaArVHfor1OXZDsn6EU
 	*/
-	ushort SceneID = (ushort)(AreaID*10000+RoomID*100+current.camera);
 	// vars.DebugMessage("Area: "+current.area+", Room: "+current.room+", Camera: "+current.camera+", Scene: "+SceneID+" (0x"+SceneID.ToString("X4")+")");
+	ushort SceneID = (ushort)(AreaID*10000+RoomID*100+current.camera);
 
 	/* SHARED EVENTS */
 	switch (SceneID)
@@ -480,6 +482,8 @@ split
 		case 21203: /* Entering Sliding Trap Room */
 		case 20000: /* Mansion Elevator (Kitchen 🡸/🡺 Elevator Corridor) */
 		case 31200: /* Entering Spider Room */
+		case 31301: /* Entering Straight Passage */
+		case 30600: /* Entering Underground Statue Room */
 		case 52100: /* Elevator to Laboratory B3 from B4 */
 		case 52101: /* Elevator to Laboratory B4 from B3 */
 			if (!settings["DoorSplit"] && !vars.Events.Contains("room"+SceneID))
