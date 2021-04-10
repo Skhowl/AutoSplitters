@@ -268,21 +268,21 @@ startup
 
 	settings.Add("EventSplit", true, "Auto-split on certain events.");
 	settings.CurrentDefaultParent = "EventSplit";
-	settings.Add("video", true, "Video Events");
-	settings.Add("video103", false, "Zombie eating Kenneth (Tea Room)", "video");
-	settings.Add("video301", false, "Drain the water (Water Pool)", "video");
-	settings.Add("video414", false, "Shark speeding (Jill, Aqua Ring Walkway)", "video");
-	settings.Add("video110", false, "A Hunter is coming for you (Dark Corridor)", "video");
-	settings.Add("video305", false, "Fountain releasing (Fountain)", "video");
-	settings.Add("video519", false, "Tyrant shown in cryogenic tube (Main Laboratory)", "video");
+	settings.Add("fmv", true, "FMV Events");
+	settings.Add("fmv103", false, "Zombie eating Kenneth (Tea Room)", "fmv");
+	settings.Add("fmv301", false, "Drain the water (Water Pool)", "fmv");
+	settings.Add("fmv414", false, "Shark speeding (Jill, Aqua Ring Walkway)", "fmv");
+	settings.Add("fmv110", false, "A Hunter is coming for you (Dark Corridor)", "fmv");
+	settings.Add("fmv305", false, "Fountain releasing (Fountain)", "fmv");
+	settings.Add("fmv519", false, "Tyrant shown in cryogenic tube (Main Laboratory)", "fmv");
 	settings.Add("shared", true, "Shared Events");
 	settings.Add("event10509", false, "Clock puzzle (Dining Room)", "shared");
 	settings.Add("event21605", false, "Yawn A (Attic)", "shared");
 	settings.SetToolTip("event21605", "Yawn shows up and is ready to fight.");
-	settings.Add("event11116", false, "Mask without eyes placed (Crypt)", "shared");
-	settings.Add("event11117", false, "Mask without eyes, nose and mouth placed (Crypt)", "shared");
-	settings.Add("event11118", false, "Mask without a nose placed (Crypt)", "shared");
-	settings.Add("event11119", false, "Mask without a mouth placed (Crypt)", "shared");
+	settings.Add("event11116", false, "Placing Mask without eyes (Crypt)", "shared");
+	settings.Add("event11117", false, "Placing Mask without eyes, nose and mouth (Crypt)", "shared");
+	settings.Add("event11118", false, "Placing Mask without a nose (Crypt)", "shared");
+	settings.Add("event11119", false, "Placing Mask without a mouth (Crypt)", "shared");
 	settings.Add("event11121", false, "Crimson Head awakens (Crypt)", "shared");
 	settings.SetToolTip("event11121", "After you've placed all mask's into their respective places on the wall next to the entrance, it emerges from the fallen coffin.");
 	settings.Add("event31714", false, "Overhear transmission (Muddy Path)", "shared");
@@ -436,11 +436,11 @@ split
 			vars.Events.Add("Ended");
 			return true;
 		}
-		int VideoID = (int)(AreaID*100+RoomID);
-		if (settings.ContainsKey("video"+VideoID) && !vars.Events.Contains("video"+VideoID))
+		int FMVplace = (int)(AreaID*100+RoomID);
+		if (settings.ContainsKey("fmv"+FMVplace) && !vars.Events.Contains("fmv"+FMVplace))
 		{
-			vars.Events.Add("video"+VideoID);
-			return settings["video"+VideoID];
+			vars.Events.Add("fmv"+FMVplace);
+			return settings["fmv"+FMVplace];
 		}
 	}
 
