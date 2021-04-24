@@ -1,5 +1,5 @@
 /*
-Resident Evil HD Remaster Autosplitter Version 4.1.1
+Resident Evil HD Remaster Autosplitter Version 4.2
 Supports room-room splits for every category, in addition to key-item and key-event splits.
 Split files may be obtained from: 
 by CursedToast 2/22/2016 (1.0 initial release) to 5/18/2018 (3.0 release)
@@ -29,7 +29,6 @@ Update to Version 4.2 (4/24/2021)
 state("bhd")
 {
 	float time : "bhd.exe", 0x97C9C0, 0xE474C;
-	int outfit : "bhd.exe", 0x97C9C0, 0x5114;
 	int character : "bhd.exe", 0x97C9C0, 0x5118;
 	int slot1 : "bhd.exe", 0x97C9C0, 0x38;
 	int slot2 : "bhd.exe", 0x97C9C0, 0x40;
