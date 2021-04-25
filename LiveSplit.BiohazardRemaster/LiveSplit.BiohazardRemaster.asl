@@ -1,5 +1,5 @@
 /*
-Resident Evil HD Remaster Autosplitter Version 4.2
+Resident Evil HD Remaster Autosplitter Version 4.2.1
 Supports room-room splits for every category, in addition to key-item and key-event splits.
 Split files may be obtained from: 
 by CursedToast 2/22/2016 (1.0 initial release) to 5/18/2018 (3.0 release)
@@ -22,7 +22,7 @@ Pessimism
 Thank you to all the above people for helping me make this possible.
 -CursedToast/Nate
 
-Update to Version 4.2 (4/24/2021)
+Update to Version 4.2.1 (4/25/2021)
 -Skhowl
 */
 
@@ -354,7 +354,8 @@ startup
 	settings.Add("event51808", false, "Rescuing Chris (Cell)", "jill");
 	settings.CurrentDefaultParent = null;
 
-	settings.Add("Outfits", true, "Gimme that damn outfit!");
+	settings.Add("Outfits", true, "Gimme that damn outfit! (Check one only)");
+	settings.SetToolTip("Outfits", "Start with the selected outfit.");
 	settings.CurrentDefaultParent = "Outfits";
 	settings.Add("outfit1", false, "Chris: CVX ♦ Jill: Sarah Conner");
 	settings.Add("outfit2", false, "Chris: The Mexican ♦ Jill: Casual");
@@ -363,10 +364,8 @@ startup
 
 init
 {
-	bool[] items = new bool[133];
-
+	vars.Items = new HashSet<string>();
 	vars.Events = new HashSet<string>();
-	vars.GetItem = (Func<int, bool>)((id) => { return items[id]; });
 
 	vars.ItemSplit = (Func<int, bool>)((id) =>
 	{
@@ -374,33 +373,24 @@ init
 		{
 			return settings["item44"];
 		}
-		if (items[id] == false)
+		if (!vars.Items.Contains("item"+id))
 		{
-			items[id] = true;
+			vars.Items.Add("item"+id);
 			return settings.ContainsKey("item"+id) && settings["item"+id];
 		}
 		return false;
 	});
 
-	vars.ResetAllTo = (Action<bool>)((value) =>
-	{
-		for (int i = 0; i < 133; i++)
-		{
-			items[i] = value;
-		}
-		if (vars.Events.Count > 0)
-		{
-			vars.Events.Clear();
-		}
-	});
-
-	/*vars.GetAddress = (Action<long>)((baseAddress) =>
-	{
-		int iNum = game.ReadValue<int>(game.ReadPointer((IntPtr)baseAddress+0x97C9C0) + 0x5114);
-		vars.DebugMessage("Outfit: "+iNum);
-	});*/
-
 	refreshRate = 120.0;
+}
+
+update
+{
+	if (timer.CurrentPhase == TimerPhase.NotRunning)
+	{
+		vars.Items.Clear();
+		vars.Events.Clear();
+	}
 }
 
 start
@@ -420,9 +410,9 @@ start
 	return false;
 }
 
-reset
+isLoading
 {
-	return current.playing == 0x0140 && old.playing == 0x0550;
+	return true;
 }
 
 gameTime
@@ -430,18 +420,9 @@ gameTime
 	return TimeSpan.FromSeconds(current.time);
 }
 
-isLoading
+reset
 {
-	return true;
-}
-
-update
-{
-	if (timer.CurrentPhase == TimerPhase.NotRunning)
-	{
-		vars.ResetAllTo(false);
-		// vars.GetAddress((long)modules.First().BaseAddress);
-	}
+	return current.playing == 0x0140 && old.playing == 0x0550;
 }
 
 split
@@ -471,23 +452,22 @@ split
 	}
 
 	/*	For a full documentary look at:
-		https://docs.google.com/spreadsheets/d/1tCN-INVKPmbCZTmgJvYW3zQOAaArVHfor1OXZDsn6EU
-	*/
-	// vars.DebugMessage("Area: "+current.area+", Room: "+current.room+", Camera: "+current.camera+", Scene: "+SceneID+" (0x"+SceneID.ToString("X4")+")");
+		https://docs.google.com/spreadsheets/d/1tCN-INVKPmbCZTmgJvYW3zQOAaArVHfor1OXZDsn6EU */
 	ushort SceneID = (ushort)(AreaID*10000+RoomID*100+current.camera);
+	// vars.DebugMessage("Area: "+current.area+", Room: "+current.room+", Camera: "+current.camera+", Scene: "+SceneID+" (0x"+SceneID.ToString("X4")+")");
 
 	/* SHARED EVENTS */
 	switch (SceneID)
 	{
 		case 21311: /* Rebecca Chambers B (Pillar Room) */
-			if (!vars.Events.Contains("event21311") && vars.GetItem(78))
+			if (!vars.Events.Contains("event21311") && vars.Items.Contains("item78"))
 			{
 				vars.Events.Add("event21311");
 				return settings["event21311"];
 			}
 			break;
 		case 21329: /* Richard Aiken B (Pillar Room) */
-			if (!vars.Events.Contains("event21329") && vars.GetItem(78))
+			if (!vars.Events.Contains("event21329") && vars.Items.Contains("item78"))
 			{
 				vars.Events.Add("event21329");
 				return settings["event21329"];
