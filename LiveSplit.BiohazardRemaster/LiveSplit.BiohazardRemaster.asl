@@ -1,5 +1,5 @@
 /*
-Resident Evil HD Remaster Autosplitter Version 4.2.1
+Resident Evil HD Remaster Autosplitter Version 4.2.2
 Supports room-room splits for every category, in addition to key-item and key-event splits.
 Split files may be obtained from: 
 by CursedToast 2/22/2016 (1.0 initial release) to 5/18/2018 (3.0 release)
@@ -22,7 +22,7 @@ Pessimism
 Thank you to all the above people for helping me make this possible.
 -CursedToast/Nate
 
-Update to Version 4.2.1 (4/25/2021)
+Update to Version 4.2.2 (4/29/2021)
 -Skhowl
 */
 
@@ -359,7 +359,7 @@ startup
 	settings.CurrentDefaultParent = "Outfits";
 	settings.Add("outfit1", false, "Chris: CVX ♦ Jill: Sarah Conner");
 	settings.Add("outfit2", false, "Chris: The Mexican ♦ Jill: Casual");
-	settings.Add("outfit3", false, "Bioterrorism Security Assessment Alliance");
+	settings.Add("outfit3", false, "Both: BSAA");
 }
 
 init
@@ -384,19 +384,14 @@ init
 	refreshRate = 120.0;
 }
 
-update
-{
-	if (timer.CurrentPhase == TimerPhase.NotRunning)
-	{
-		vars.Items.Clear();
-		vars.Events.Clear();
-	}
-}
+/* update { } */
 
 start
 {
 	if (current.playing == 0x0550 && current.time < 0.05)
 	{
+		vars.Items.Clear();
+		vars.Events.Clear();
 		for (int i = 1; i < 4; i++)
 		{
 			if (settings["outfit"+i])
@@ -436,7 +431,7 @@ split
 
 	/* VIDEOS */
 	int AreaID = current.area;
-	if (current.vidplaying != 0)
+	if (current.vidplaying > 0)
 	{
 		if (current.playing == 0x01B0 && !vars.Events.Contains("Ended"))
 		{
