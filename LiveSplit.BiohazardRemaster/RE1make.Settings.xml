@@ -1,71 +1,75 @@
 <Settings>
 	<Setting Id="DoorSplit" Label="Auto-split on all doors!" ToolTip="Make sure you grab the right splits file either way!" State="false"/>
     <Setting Id="ItemSplit" Label="Auto-split on picking up items. (Sort by item id)">
-	    <Setting Id="item4" Label="4: Self Defense Gun" State="false"/>
-		<Setting Id="item6" Label="6: Shotgun" State="false"/>
-		<Setting Id="item7" Label="7: Grenade Launcher (Grenade)" State="false"/>
-		<Setting Id="item13" Label="13: Assault Shotgun" State="false"/>
-		<Setting Id="item21" Label="21: Golden Arrow" State="false"/>
-		<Setting Id="item22" Label="22: Book of Curses" State="false"/>
-		<Setting Id="item23" Label="23: Coin" State="false"/>
-		<Setting Id="item24" Label="24: Collar" State="false"/>
-		<Setting Id="item26" Label="26: Broach" State="false"/>
-		<Setting Id="item28" Label="28: Arrowhead" State="false"/>
-		<Setting Id="item29" Label="29: Imitation of a key" State="false"/>
-		<Setting Id="item30" Label="30: Gallery Key" State="false"/>
-		<Setting Id="item31" Label="31: Fuel Supply Capsule (Full)" State="false"/>
-		<Setting Id="item32" Label="32: Musical Score (Missing Music)" State="false"/>
-		<Setting Id="item43" Label="43: Lock Pick (Jill)" State="false"/>
-		<Setting Id="item44" Label="44: Old Key (5 Times)" State="false"/>
-		<Setting Id="item45" Label="45: Sword Key" State="false"/>
-		<Setting Id="item46" Label="46: Armor Key" State="false"/>
-		<Setting Id="item47" Label="47: Shield Key" State="false"/>
-		<Setting Id="item48" Label="48: Helmet Key" State="false"/>
-		<Setting Id="item49" Label="49: Key for Room 001" State="false"/>
-		<Setting Id="item50" Label="50: Key for Room 003" State="false"/>
-		<Setting Id="item51" Label="51: Medal of Eagle" State="false"/>
-		<Setting Id="item52" Label="52: Medal of Wolf" State="false"/>
-		<Setting Id="item53" Label="53: Stone and Metal Object" State="false"/>
-		<Setting Id="item54" Label="54: Key for the Power Area" State="false"/>
-		<Setting Id="item55" Label="55: Master Key" State="false"/>
-		<Setting Id="item60" Label="60: Square Crank" State="false"/>
-		<Setting Id="item61" Label="61: Hexagon Crank" State="false"/>
-		<Setting Id="item63" Label="63: Emblem Key" State="false"/>
-		<Setting Id="item64" Label="64: Stone Ring" State="false"/>
-		<Setting Id="item65" Label="65: Metal Object" State="false"/>
-		<Setting Id="item66" Label="66: Survival Knife (Black Tiger)" State="false"/>
-		<Setting Id="item67" Label="67: Battery" State="false"/>
-		<Setting Id="item69" Label="69: Wooden Emblem" State="false"/>
-		<Setting Id="item70" Label="70: Gold Emblem" State="false"/>
-		<Setting Id="item71" Label="71: Sheet Music (Moonlight Sonata)" State="false"/>
-		<Setting Id="item72" Label="72: Red Gemstone" State="false"/>
-		<Setting Id="item74" Label="74: Yellow Gemstone" State="false"/>
-		<Setting Id="item76" Label="76: Herbicide (Chemical)" State="false"/>
-		<Setting Id="item77" Label="77: Lighter (Jill)" State="false"/>
-		<Setting Id="item78" Label="78: Serum" State="false"/>
-		<Setting Id="item90" Label="90: Unprinted Book" State="false"/>
-		<Setting Id="item91" Label="91: Last Book Vol. 1 (Red)" State="false"/>
-		<Setting Id="item92" Label="92: Last Book Vol. 2 (Blue)" State="false"/>
-		<Setting Id="item93" Label="93: MO Disc 1 (Tiger Statue Room)" State="false"/>
-		<Setting Id="item94" Label="94: MO Disc 2 (Laboratory Stairway)" State="false"/>
-		<Setting Id="item95" Label="95: MO Disc 3 (Visual Data Room)" State="false"/>
-		<Setting Id="item96" Label="96: Dog Whistle" State="false"/>
-		<Setting Id="item97" Label="97: Fuse Unit" State="false"/>
-		<Setting Id="item99" Label="99: Jewellery Box (Lisa's Room, Stone Ring)" State="false"/>
-		<Setting Id="item100" Label="100: Insecticide Spray" State="false"/>
-		<Setting Id="item102" Label="102: Jewellery Box (Mirror Room, Broach)" State="false"/>
-		<Setting Id="item103" Label="103: Jewellery Box (Armor Room, Mask)" State="false"/>
-		<Setting Id="item106" Label="106: Signal Rockets" State="false"/>
-		<Setting Id="item107" Label="107: Broken Flamethrower" State="false"/>
-		<Setting Id="item110" Label="110: Control Room Key" State="false"/>
-		<Setting Id="item111" Label="111: Fuel Supply Capsule (Empty)" State="false"/>
-		<Setting Id="item122" Label="122: Shaft" State="false"/>
-		<Setting Id="item123" Label="123: Cylinder" State="false"/>
-		<Setting Id="item124" Label="124: Cylinder Shaft" State="false"/>
-		<Setting Id="item126" Label="126: Mask without eyes" State="false"/>
-		<Setting Id="item127" Label="127: Mask without a nose" State="false"/>
-		<Setting Id="item128" Label="128: Mask without a mouth" State="false"/>
-		<Setting Id="item129" Label="129: Musical Score (Music, mid-pages)" State="false"/>
+	    <Setting Id="4" Label="Self Defense Gun" State="false"/>
+		<Setting Id="6" Label="Shotgun" State="false"/>
+		<Setting Id="7" Label="Grenade Launcher (Grenade)" State="false"/>
+		<Setting Id="13" Label="Assault Shotgun" State="false"/>
+		<Setting Id="21" Label="Golden Arrow" State="false"/>
+		<Setting Id="22" Label="Book of Curses" State="false"/>
+		<Setting Id="23" Label="Coin" State="false"/>
+		<Setting Id="24" Label="Collar" State="false"/>
+		<Setting Id="26" Label="Broach" State="false"/>
+		<Setting Id="28" Label="Arrowhead" State="false"/>
+		<Setting Id="29" Label="Imitation of a key" State="false"/>
+		<Setting Id="30" Label="Gallery Key" State="false"/>
+		<Setting Id="31" Label="Fuel Supply Capsule (Full)" State="false"/>
+		<Setting Id="32" Label="Musical Score (Missing Music)" State="false"/>
+		<Setting Id="43" Label="Lock Pick (Jill)" State="false"/>
+		<Setting Id="Okey" Label="Old Key Splits" State="false">
+			<Setting Id="K1" Label="Bathroom" State="false"/>
+			<Setting Id="K2" Label="East Wing Save Room" State="false"/>
+			<Setting Id="K3" Label="Keeper's Bedroom" State="false"/>
+		</Setting>
+		<Setting Id="45" Label="Sword Key" State="false"/>
+		<Setting Id="46" Label="Armor Key" State="false"/>
+		<Setting Id="47" Label="Shield Key" State="false"/>
+		<Setting Id="48" Label="Helmet Key" State="false"/>
+		<Setting Id="49" Label="Key for Room 001" State="false"/>
+		<Setting Id="50" Label="Key for Room 003" State="false"/>
+		<Setting Id="51" Label="Medal of Eagle" State="false"/>
+		<Setting Id="52" Label="Medal of Wolf" State="false"/>
+		<Setting Id="53" Label="Stone and Metal Object" State="false"/>
+		<Setting Id="54" Label="Key for the Power Area" State="false"/>
+		<Setting Id="55" Label="Master Key" State="false"/>
+		<Setting Id="60" Label="Square Crank" State="false"/>
+		<Setting Id="61" Label="Hexagon Crank" State="false"/>
+		<Setting Id="63" Label="Emblem Key" State="false"/>
+		<Setting Id="64" Label="Stone Ring" State="false"/>
+		<Setting Id="65" Label="Metal Object" State="false"/>
+		<Setting Id="66" Label="Survival Knife (Black Tiger)" State="false"/>
+		<Setting Id="67" Label="Battery" State="false"/>
+		<Setting Id="69" Label="Wooden Emblem" State="false"/>
+		<Setting Id="70" Label="Gold Emblem" State="false"/>
+		<Setting Id="71" Label="Sheet Music (Moonlight Sonata)" State="false"/>
+		<Setting Id="72" Label="Red Gemstone" State="false"/>
+		<Setting Id="74" Label="Yellow Gemstone" State="false"/>
+		<Setting Id="76" Label="Herbicide (Chemical)" State="false"/>
+		<Setting Id="77" Label="Lighter (Jill)" State="false"/>
+		<Setting Id="78" Label="Serum" State="false"/>
+		<Setting Id="90" Label="Unprinted Book" State="false"/>
+		<Setting Id="91" Label="Last Book Vol. 1 (Red)" State="false"/>
+		<Setting Id="92" Label="Last Book Vol. 2 (Blue)" State="false"/>
+		<Setting Id="93" Label="MO Disc 1 (Tiger Statue Room)" State="false"/>
+		<Setting Id="94" Label="MO Disc 2 (Laboratory Stairway)" State="false"/>
+		<Setting Id="95" Label="MO Disc 3 (Visual Data Room)" State="false"/>
+		<Setting Id="96" Label="Dog Whistle" State="false"/>
+		<Setting Id="97" Label="Fuse Unit" State="false"/>
+		<Setting Id="99" Label="Jewellery Box (Lisa's Room, Stone Ring)" State="false"/>
+		<Setting Id="100" Label="Insecticide Spray" State="false"/>
+		<Setting Id="102" Label="Jewellery Box (Mirror Room, Broach)" State="false"/>
+		<Setting Id="103" Label="Jewellery Box (Armor Room, Mask)" State="false"/>
+		<Setting Id="106" Label="Signal Rockets" State="false"/>
+		<Setting Id="107" Label="Broken Flamethrower" State="false"/>
+		<Setting Id="110" Label="Control Room Key" State="false"/>
+		<Setting Id="111" Label="Fuel Supply Capsule (Empty)" State="false"/>
+		<Setting Id="122" Label="Shaft" State="false"/>
+		<Setting Id="123" Label="Cylinder" State="false"/>
+		<Setting Id="124" Label="Cylinder Shaft" State="false"/>
+		<Setting Id="126" Label="Mask without eyes" State="false"/>
+		<Setting Id="127" Label="Mask without a nose" State="false"/>
+		<Setting Id="128" Label="Mask without a mouth" State="false"/>
+		<Setting Id="129" Label="Musical Score (Music, mid-pages)" State="false"/>
 	</Setting>
 	<Setting Id="DefenceSplit" Label="Auto-split on picking up defensives items." State="false">
 	    <Setting Id="defence1" Label="Dagger" State="false">
@@ -79,18 +83,18 @@
 	</Setting>
 	<Setting Id="EventSplit" Label="Auto-split on certain events." State="false">
 	    <Setting Id="shared" Label="Shared Events" State="false">
-			<Setting Id="event11121" Label="Crimson Head awakens (Crypt)" ToolTip="After you've placed all mask's into their respective places on the wall next to the entrance, it emerges from the fallen coffin." State="false"/>
-			<Setting Id="event31707" Label="Cemetery gate (Muddy Path)" ToolTip="After you solved the red and blue signpost puzzle." State="false"/>
-			<Setting Id="event22205" Label="Yawn B (Library)" ToolTip="Yawn shows up a second time and is ready to fight." State="false"/>
-			<Setting Id="event22214" Label="Yawn dying (Library)" ToolTip="Yawn get's killed in Library for Last Book Vol. 2." State="false"/>
-			<Setting Id="event30208" Label="Battery placed (Falls Area)" ToolTip="Used to power the elevator in the Falls Area of the Courtyard, enabling you to access the area under the waterfall once the water flow has been stopped." State="false"/>
-			<Setting Id="event30110" Label="Replenish water (Water Pool)" ToolTip="After you have used Square Crank to fill the water pool." State="false"/>
-			<Setting Id="event31508" Label="Boulder rolling (Boulder Passage 2)" ToolTip="Hexagon Crank was used 3 Times in a row." State="false"/>
-			<Setting Id="event32406" Label="Wooden box (Underground Storage Room)" ToolTip="Wooden Box goes on the cable car" State="false"/>
-			<Setting Id="event32107" Label="Lisa Trevor B (Altar B2)" ToolTip="After Lisa is jumping down the pit and you entering the hall way." State="false"/>
-			<Setting Id="event50608" Label="*Terminal* (Operating Room)" ToolTip="When you access Terminal." State="false"/>
-			<Setting Id="event51510" Label="Fuel Supply Capsule placed (Power Maze A)" ToolTip="When you placed the full Fuel Supply Capsule and the light is turning green." State="false"/>
-			<Setting Id="event51707" Label="Power on (Power Control Room)" ToolTip="When the power has turned on." State="false"/>
+			<Setting Id="11121" Label="Crimson Head awakens (Crypt)" ToolTip="After you've placed all mask's into their respective places on the wall next to the entrance, it emerges from the fallen coffin." State="false"/>
+			<Setting Id="31707" Label="Cemetery gate (Muddy Path)" ToolTip="After you solved the red and blue signpost puzzle." State="false"/>
+			<Setting Id="22205" Label="Yawn B (Library)" ToolTip="Yawn shows up a second time and is ready to fight." State="false"/>
+			<Setting Id="22214" Label="Yawn dying (Library)" ToolTip="Yawn get's killed in Library for Last Book Vol. 2." State="false"/>
+			<Setting Id="30208" Label="Battery placed (Falls Area)" ToolTip="Used to power the elevator in the Falls Area of the Courtyard, enabling you to access the area under the waterfall once the water flow has been stopped." State="false"/>
+			<Setting Id="30110" Label="Replenish water (Water Pool)" ToolTip="After you have used Square Crank to fill the water pool." State="false"/>
+			<Setting Id="31508" Label="Boulder rolling (Boulder Passage 2)" ToolTip="Hexagon Crank was used 3 Times in a row." State="false"/>
+			<Setting Id="32406" Label="Wooden box (Underground Storage Room)" ToolTip="Wooden Box goes on the cable car" State="false"/>
+			<Setting Id="32107" Label="Lisa Trevor B (Altar B2)" ToolTip="After Lisa is jumping down the pit and you entering the hall way." State="false"/>
+			<Setting Id="50608" Label="*Terminal* (Operating Room)" ToolTip="When you access Terminal." State="false"/>
+			<Setting Id="51510" Label="Fuel Supply Capsule placed (Power Maze A)" ToolTip="When you placed the full Fuel Supply Capsule and the light is turning green." State="false"/>
+			<Setting Id="51707" Label="Power on (Power Control Room)" ToolTip="When the power has turned on." State="false"/>
 		</Setting>
 	</Setting>
 	<Setting Id="Outfits" Label="Gimme that damn outfit! (Check one only)" ToolTip="Start with the selected outfit." State="false">
